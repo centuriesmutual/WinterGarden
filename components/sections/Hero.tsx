@@ -2,169 +2,258 @@
 
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import Link from "next/link";
-import { AudioWaveform } from "lucide-react";
+import { Image as ImageIcon } from "lucide-react";
 
-const bg = "#0a0a0a" as const;
+const g = {
+  a: "#1a1a1a",
+  b: "#2a2a2a",
+  c: "#333333",
+  d: "#444444",
+  e: "#555555",
+  f: "#666666",
+} as const;
 
-const textLoad = { duration: 0.6, ease: "easeOut" as const };
-const imageLoad = { duration: 0.7, delay: 0.1, ease: "easeOut" as const };
+function HeroRuledLineDouble() {
+  return (
+    <div aria-hidden className="w-full">
+      <div style={{ height: "1px", background: g.c }} />
+      <div className="h-1" />
+      <div style={{ height: "1px", background: g.c }} />
+    </div>
+  );
+}
 
 export default function Hero() {
   return (
     <section
       id="top"
-      className="relative w-full box-border"
-      style={{ background: bg, minHeight: "100svh" }}
+      className="relative w-full overflow-hidden"
+      style={{
+        minHeight: "100svh",
+        background:
+          "radial-gradient(ellipse at center, rgba(255,255,255,0.03) 0%, transparent 60%), var(--ink)",
+      }}
     >
       <LazyMotion features={domAnimation}>
         <div
-          className="box-border flex w-full min-h-screen items-center justify-center pt-[72px] pb-12"
-          style={{ background: bg }}
+          className="relative w-full flex flex-col px-5 md:px-10"
+          style={{
+            minHeight: "100svh",
+            paddingTop: "104px",
+            paddingBottom: "56px",
+          }}
         >
-          <div className="mx-auto w-full max-w-7xl px-6">
-            <div className="grid w-full grid-cols-1 gap-[clamp(1.5rem,4vw,3rem)] md:grid-cols-12 md:gap-8 xl:gap-12">
+          <div
+            aria-hidden
+            className="hidden md:block pointer-events-none absolute"
+            style={{
+              left: "6vw",
+              right: "6vw",
+              top: "128px",
+              bottom: "32px",
+              maxHeight: "calc(100% - 160px)",
+              border: `1px solid ${g.b}`,
+              borderRadius: "32px",
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.02), transparent 45%)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+            }}
+          />
+
+          <m.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
+            className="text-center w-full"
+            style={{
+              fontSize: "clamp(32px, 6.2vw, 78px)",
+              lineHeight: 1.02,
+              color: "var(--paper)",
+              letterSpacing: "-0.04em",
+              fontWeight: 700,
+              maxWidth: "14ch",
+              margin: "0 auto 8px",
+            }}
+          >
+            Where musicians
+            <br />
+            <span
+              style={{
+                backgroundImage: `linear-gradient(180deg, #888888 0%, ${g.f} 55%, ${g.e} 100%)`,
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+                fontStyle: "italic",
+                fontWeight: 600,
+              }}
+            >
+              are measured.
+            </span>
+          </m.h1>
+
+          <div
+            className="w-full max-w-[1160px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-center"
+            style={{ marginTop: "12px" }}
+          >
+            <div className="flex flex-col text-left w-full min-w-0 order-1">
               <m.div
-                initial={{ opacity: 0, y: -16 }}
+                initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={textLoad}
-                className="col-span-1 flex flex-col py-8 md:col-span-6 lg:col-start-1 lg:col-span-5"
-              >
-                <div
-                  className="mb-8 inline-flex w-fit rounded-full border px-4 py-2"
-                  style={{
-                    background: "#111114",
-                    borderColor: "#1a1a1e",
-                  }}
-                >
-                  <span
-                    className="font-mono text-xs uppercase tracking-widest"
-                    style={{ color: "#444444" }}
-                  >
-                    Now in private beta · Anno MMXXV
-                  </span>
-                </div>
-
-                <h1
-                  className="mb-8"
-                  style={{ lineHeight: 1.1, letterSpacing: "-0.03em" }}
-                >
-                  <span
-                    className="block font-medium"
-                    style={{
-                      color: "#f5f5f5",
-                      fontSize: "clamp(2.8rem, 6vw, 5rem)",
-                    }}
-                  >
-                    Where musicians
-                  </span>
-                  <span
-                    className="mt-0 block font-light"
-                    style={{
-                      color: "#666666",
-                      fontSize: "clamp(2.8rem, 6vw, 5rem)",
-                    }}
-                  >
-                    are measured.
-                  </span>
-                </h1>
-
-                <p
-                  className="mb-8 max-w-md font-light"
-                  style={{
-                    fontSize: "clamp(1rem, 2vw, 1.25rem)",
-                    lineHeight: 1.8,
-                    color: "#888888",
-                  }}
-                >
-                  A performance intelligence platform that scores your playing
-                  with the precision of a master&rsquo;s ear — pitch to the
-                  cent, timing to the millisecond, expression to the phrase.
-                </p>
-
-                <div className="flex flex-wrap gap-4">
-                  <Link
-                    href="#waitlist"
-                    className="inline-flex cursor-pointer items-center justify-center font-mono text-sm uppercase transition-all duration-300 ease-out"
-                    style={{
-                      letterSpacing: "0.15em",
-                      background: "#f0f0f0",
-                      color: "#0a0a0a",
-                      padding: "12px 32px",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background =
-                        "#ffffff";
-                      (e.currentTarget as HTMLElement).style.boxShadow =
-                        "0 0 30px rgba(255,255,255,0.1)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background =
-                        "#f0f0f0";
-                      (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                    }}
-                  >
-                    Enter the Hall →
-                  </Link>
-                  <Link
-                    href="#manifesto"
-                    className="inline-flex cursor-pointer items-center justify-center border bg-transparent font-mono text-sm uppercase transition-all duration-300 ease-out"
-                    style={{
-                      letterSpacing: "0.15em",
-                      borderColor: "#222222",
-                      color: "#444444",
-                      padding: "12px 32px",
-                    }}
-                    onMouseEnter={(e) => {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.borderColor = "#555555";
-                      el.style.color = "#888888";
-                    }}
-                    onMouseLeave={(e) => {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.borderColor = "#222222";
-                      el.style.color = "#444444";
-                    }}
-                  >
-                    Read the Manifesto
-                  </Link>
-                </div>
-              </m.div>
-
-              <m.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={imageLoad}
-                className="col-span-1 hidden min-h-0 flex-col items-center justify-center p-8 md:col-span-6 md:col-start-7 md:flex lg:col-start-7 lg:col-span-6"
+                transition={{ duration: 0.6, delay: 0.35 }}
+                className="inline-flex self-start items-center gap-2 w-fit"
                 style={{
-                  minHeight: "min(52vh, 520px)",
-                  background: "#0d0d0f",
-                  border: "1px solid #1a1a1e",
+                  padding: "5px 12px",
+                  fontSize: "10px",
+                  fontWeight: 500,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: g.f,
+                  background: g.a,
+                  border: `1px solid ${g.b}`,
+                  borderRadius: "9999px",
+                  boxShadow: "0 0 0 1px rgba(255,255,255,0.04)",
                 }}
               >
-                <AudioWaveform
-                  className="mb-3 shrink-0"
-                  size={56}
-                  strokeWidth={1.25}
-                  style={{ color: "#2a2a2a" }}
+                <span
                   aria-hidden
+                  className="rounded-full shrink-0"
+                  style={{
+                    width: "6px",
+                    height: "6px",
+                    background: g.e,
+                    animation: "pulse-dot 2.4s ease-in-out infinite",
+                    boxShadow: "0 0 8px rgba(255,255,255,0.06)",
+                  }}
                 />
-                <p
-                  className="font-mono text-xs uppercase tracking-widest"
-                  style={{ color: "#3a3a3a" }}
+                Now in private beta · Anno MMXXV
+              </m.div>
+
+              <m.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.55 }}
+                style={{
+                  fontSize: "clamp(13px, 1.05vw, 15px)",
+                  color: "var(--paper-dim)",
+                  marginTop: "14px",
+                  lineHeight: 1.5,
+                  fontWeight: 400,
+                  maxWidth: "38ch",
+                }}
+              >
+                A performance intelligence platform that scores your playing
+                with the precision of a master&rsquo;s ear — pitch to the
+                cent, timing to the millisecond, expression to the phrase.
+              </m.p>
+
+              <m.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.75 }}
+                className="flex items-center flex-wrap gap-3"
+                style={{ marginTop: "22px" }}
+              >
+                <Link
+                  href="#waitlist"
+                  className="inline-flex items-center justify-center font-medium transition-colors"
+                  style={{
+                    padding: "9px 18px",
+                    fontSize: "12px",
+                    borderRadius: "9999px",
+                    color: "#e8e8e8",
+                    background: g.b,
+                    border: `1px solid ${g.c}`,
+                    boxShadow:
+                      "0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 20px -10px rgba(0,0,0,0.5)",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background = g.c;
+                    el.style.borderColor = g.d;
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.background = g.b;
+                    el.style.borderColor = g.c;
+                  }}
                 >
-                  Wintergarden Interface
-                </p>
-                <p
-                  className="mt-2 font-mono"
-                  style={{ color: "#252528", fontSize: "10px" }}
+                  Enter the Hall
+                  <span style={{ marginLeft: "8px", fontSize: "13px" }}>→</span>
+                </Link>
+                <Link
+                  href="#manifesto"
+                  className="inline-flex items-center justify-center font-medium transition-colors"
+                  style={{
+                    padding: "9px 18px",
+                    fontSize: "12px",
+                    borderRadius: "9999px",
+                    color: g.f,
+                    background: "transparent",
+                    border: `1px solid ${g.c}`,
+                    boxShadow: "0 0 0 0 rgba(255,255,255,0.04)",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.color = "#a0a0a0";
+                    el.style.borderColor = g.e;
+                    el.style.background = "rgba(255,255,255,0.04)";
+                    el.style.boxShadow = "0 0 0 1px rgba(255,255,255,0.04)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.color = g.f;
+                    el.style.borderColor = g.c;
+                    el.style.background = "transparent";
+                    el.style.boxShadow = "none";
+                  }}
                 >
-                  Coming soon
-                </p>
+                  Read the Manifesto
+                </Link>
               </m.div>
             </div>
+
+            <m.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.5 }}
+              className="w-full min-h-[240px] flex flex-col order-2 lg:order-2"
+              style={{
+                aspectRatio: "15 / 10",
+                minHeight: "220px",
+                borderRadius: "12px",
+                background: "#1e1e1e",
+                border: "1px dashed #333333",
+                boxShadow:
+                  "0 0 0 1px rgba(255,255,255,0.04), 0 20px 40px -20px rgba(0,0,0,0.5)",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "20px",
+              }}
+            >
+              <ImageIcon
+                className="shrink-0"
+                size={26}
+                strokeWidth={1.25}
+                style={{ color: g.e }}
+                aria-hidden
+              />
+              <p
+                className="text-center"
+                style={{
+                  color: g.d,
+                  fontSize: "12px",
+                  fontWeight: 500,
+                  marginTop: "8px",
+                }}
+              >
+                Visual coming soon
+              </p>
+            </m.div>
           </div>
         </div>
       </LazyMotion>
+
+      <HeroRuledLineDouble />
     </section>
   );
 }
