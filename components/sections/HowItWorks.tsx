@@ -22,48 +22,48 @@ const MOVEMENTS: Movement[] = [
     movementLabel: "Primo",
     action: "Perform",
     tempo: "Allegro",
-    body: "You play. Wintergarden listens at the level a master listens — capturing every pitch against the equal-tempered standard, every onset against the written beat, every swell and recession of dynamic across the phrase. Nothing is approximated. Nothing is lost.",
+    body: "You play. Wintergarden records the performance with the same precision the repertoire demands: pitch, time, and dynamics measured continuously. That data is the input to everything that follows — including the settlement path that runs on the Avalanche network. Nothing is approximated. Nothing is lost before scoring.",
     features: [
-      { label: "PITCH CAPTURE", desc: "Deviation measured in cents, in real time." },
-      { label: "ONSET DETECTION", desc: "Every note event timestamped to the millisecond." },
-      { label: "DYNAMIC MAPPING", desc: "Volume contour traced across the full phrase arc." },
+      { label: "PITCH & TIME", desc: "Deviation and onset timing captured in real time." },
+      { label: "DYNAMIC CONTOUR", desc: "Expression mapped across the full phrase." },
+      { label: "SESSION PAYLOAD", desc: "A complete capture, ready for analysis and rank." },
     ],
-    closer: "The performance is the document.",
+    closer: "The take is the starting signal.",
   },
   {
     roman: "II",
     movementLabel: "Secondo",
     action: "Analyse",
     tempo: "Andante",
-    body: "From your session, a Wintergarden Score is composed. Pitch accuracy, rhythmic consistency, and expressive fidelity are each assessed, weighted, and resolved into a single composite rating — calibrated against a reference corpus of professional recordings, normalised by repertoire and difficulty.",
+    body: "From your session, a Wintergarden Score is composed: pitch accuracy, rhythmic consistency, and expression are weighted and resolved into a single 0–1000 rating — normalised by repertoire and difficulty. That score is what the ranking and payout logic use; it is the same number every participant is judged against before anything is sent on Avalanche.",
     features: [
-      { label: "ACCURACY RATING", desc: "Pitch and rhythm scored against the notated score." },
-      { label: "EXPRESSION INDEX", desc: "Phrasing and dynamic contour evaluated at gesture level." },
-      { label: "COMPOSITE SCORE", desc: "A single, reproducible rating on a 0–1000 scale." },
+      { label: "COMPOSITE SCORE", desc: "One reproducible 0–1000 rating per session." },
+      { label: "REFERENCE CALIBRATION", desc: "Scored against professional reference material." },
+      { label: "RANK INPUT", desc: "The score that feeds the weekly standing and pool share." },
     ],
-    closer: "Precise. Verifiable. Permanent.",
+    closer: "One number. One standard. No ambiguity.",
   },
   {
     roman: "III",
     movementLabel: "Finale",
     action: "Ascend",
     tempo: "Con brio",
-    body: "Your score enters the Society — a ranked cohort of performers assessed by the same standard. Consistent excellence earns recognition and a share of the performance pool: real payments, distributed weekly, proportional to your standing. The record of your achievement is permanent and independently verifiable.",
+    body: "Top performers share a USDC pool on Avalanche. Each week, the protocol allocates that pool by rank: your standing in the active cohort sets your share. Payouts are USDC on the Avalanche C-Chain — sent to the wallet you connect to Wintergarden. Finality and fees you expect from Avalanche; the schedule and split are fixed and transparent.",
     features: [
-      { label: "RANKED STANDING", desc: "Your score placed within the active performer cohort." },
-      { label: "PERFORMANCE POOL", desc: "Weekly distributions to top-ranked performers." },
-      { label: "PERMANENT RECORD", desc: "Your results archived and independently verifiable." },
+      { label: "AVALANCHE SETTLEMENT", desc: "USDC rewards settled on the Avalanche C-Chain." },
+      { label: "WEEKLY POOL", desc: "A recurring pool, split pro-rata by rank." },
+      { label: "WALLET PAYOUT", desc: "USDC delivered to your connected wallet address." },
     ],
-    closer: "Artistry recognised. Achievement rewarded.",
+    closer: "Rank earns share. Avalanche delivers it.",
   },
 ];
 
 const ECONOMY_NODES: { label: string; sub: string }[] = [
-  { label: "You Perform", sub: "Session recorded & analysed" },
-  { label: "Score Generated", sub: "0–1000 composite rating" },
-  { label: "Ranking Updated", sub: "Cohort position recalculated" },
-  { label: "Pool Allocated", sub: "Weekly pool distributed by rank" },
-  { label: "Payment Issued", sub: "Credited to your account" },
+  { label: "You Perform", sub: "Session captured & scored" },
+  { label: "Score & rank", sub: "0–1000; cohort position" },
+  { label: "Pool on Avalanche", sub: "Weekly USDC pool" },
+  { label: "Split by rank", sub: "Share set by standing" },
+  { label: "USDC to wallet", sub: "C-Chain transfer to you" },
 ];
 
 function MovementBlock({ item, index }: { item: Movement; index: number }) {
@@ -224,8 +224,11 @@ export default function HowItWorks() {
               className="text-sm max-w-2xl mb-16"
               style={{ color: "#555", lineHeight: 1.8 }}
             >
-              Every session at Wintergarden follows a single, unbroken form —
-              from the first note to the permanent record.
+              Wintergarden uses the{" "}
+              <span className="text-[#666]">Avalanche</span> network to settle
+              rewards: a weekly USDC pool, distributed by your rank, paid to
+              the wallet you connect. Practice and performance in three clear
+              steps — from the first note to USDC in your wallet.
             </p>
             <div className="w-full h-px" style={{ background: "#1e1e1e" }} aria-hidden />
           </m.header>
@@ -275,7 +278,7 @@ export default function HowItWorks() {
                 className="font-mono text-[10px] uppercase lg:col-span-2"
                 style={{ color: "#333", letterSpacing: "0.35em" }}
               >
-                THE SESSION ECONOMY
+                FROM SESSION TO AVALANCHE
               </p>
 
               <div className="lg:col-span-8 flex flex-col items-center justify-center gap-0">
@@ -340,7 +343,7 @@ export default function HowItWorks() {
                 className="font-mono text-[10px] uppercase text-right lg:col-span-2 lg:justify-self-end w-full"
                 style={{ color: "#333", letterSpacing: "0.3em" }}
               >
-                Weekly · Transparent · Yours
+                USDC · Avalanche · Weekly
               </p>
             </div>
           </m.div>
@@ -361,7 +364,7 @@ export default function HowItWorks() {
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            The performance is the credential. The score is the proof.
+            The performance earns your rank. Avalanche delivers your USDC.
           </m.p>
         </div>
       </LazyMotion>
