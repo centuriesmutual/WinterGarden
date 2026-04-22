@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const NAV_LINKS = [
   { label: "Manifesto", href: "#manifesto" },
   { label: "Programme", href: "#how-it-works" },
-  { label: "Live Demo", href: "#session-demo" },
 ];
 
 const gray = {
@@ -18,15 +18,31 @@ const gray = {
   active: "#666666",
 } as const;
 
+const SCROLL_THRESHOLD = 48;
+
 export default function Navbar() {
+  const [conceal, setConceal] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setConceal(window.scrollY > SCROLL_THRESHOLD);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed top-0 left-0 right-0 z-50 transition-[transform,opacity] duration-300 ease-out"
       style={{
         background: `linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.75) 80%, rgba(10,10,10,0) 100%)`,
         backdropFilter: "blur(10px)",
         WebkitBackdropFilter: "blur(10px)",
         height: "72px",
+        transform: conceal ? "translateY(-100%)" : "translateY(0)",
+        opacity: conceal ? 0 : 1,
+        pointerEvents: conceal ? "none" : "auto",
       }}
     >
       <nav className="h-full w-full max-w-[1400px] mx-auto flex items-center justify-between px-6 md:px-10">
