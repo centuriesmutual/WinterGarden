@@ -1,10 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import Manifesto from "@/components/sections/Manifesto";
 import HowItWorks from "@/components/sections/HowItWorks";
-import ScoreDisplay from "@/components/sections/ScoreDisplay";
-import GlobalNetwork from "@/components/sections/GlobalNetwork";
-import Incentives from "@/components/sections/Incentives";
-import CallToAction from "@/components/sections/CallToAction";
 import SessionDemo from "@/components/demo/SessionDemo";
 
 export default function HomePage() {
@@ -14,10 +10,7 @@ export default function HomePage() {
       <Manifesto />
       <HowItWorks />
       <SessionDemo />
-      <ScoreDisplay />
-      <GlobalNetwork />
-      <Incentives />
-      <CallToAction />
+      <div id="waitlist" className="sr-only" tabIndex={-1} />
     </>
   );
 }

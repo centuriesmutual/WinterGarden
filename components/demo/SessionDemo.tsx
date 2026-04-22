@@ -325,6 +325,7 @@ export default function SessionDemo() {
 
   return (
     <section
+      id="session-demo"
       className="w-full py-24 px-6"
       style={{ background: "#0a0a0a" }}
     >

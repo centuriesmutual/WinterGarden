@@ -5,7 +5,7 @@ import Link from "next/link";
 const NAV_LINKS = [
   { label: "Manifesto", href: "#manifesto" },
   { label: "Programme", href: "#how-it-works" },
-  { label: "Society", href: "#network" },
+  { label: "Live Demo", href: "#session-demo" },
 ];
 
 const gray = {
