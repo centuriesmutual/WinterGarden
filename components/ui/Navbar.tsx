@@ -8,13 +8,22 @@ const NAV_LINKS = [
   { label: "Society", href: "#network" },
 ];
 
+const gray = {
+  ink: "#0a0a0a",
+  deep: "#1a1a1a",
+  line: "#2a2a2a",
+  mid: "#333333",
+  text: "#444444",
+  hover: "#555555",
+  active: "#666666",
+} as const;
+
 export default function Navbar() {
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50"
       style={{
-        background:
-          "linear-gradient(to bottom, rgba(7,5,3,0.88) 0%, rgba(7,5,3,0.72) 80%, rgba(7,5,3,0) 100%)",
+        background: `linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.75) 80%, rgba(10,10,10,0) 100%)`,
         backdropFilter: "blur(10px)",
         WebkitBackdropFilter: "blur(10px)",
         height: "72px",
@@ -24,13 +33,12 @@ export default function Navbar() {
         <Link href="#top" className="flex items-center gap-3">
           <span
             aria-hidden
+            className="rounded-full"
             style={{
               width: "28px",
               height: "28px",
-              borderRadius: "9999px",
-              background:
-                "radial-gradient(circle at 30% 30%, #E2C47E, var(--gold) 55%, var(--gold-deep))",
-              boxShadow: "0 0 0 1px var(--gold-deep), 0 6px 18px -6px rgba(201,169,97,0.5)",
+              background: `linear-gradient(145deg, #333333, ${gray.deep})`,
+              boxShadow: `0 0 0 1px ${gray.line}, 0 6px 20px -8px rgba(255,255,255,0.04)`,
             }}
           />
           <span
@@ -56,7 +64,7 @@ export default function Navbar() {
                     fontSize: "14px",
                     fontWeight: 500,
                     letterSpacing: "-0.005em",
-                    color: "var(--paper-dim)",
+                    color: "#888888",
                     padding: "8px 14px",
                     borderRadius: "9999px",
                     display: "inline-flex",
@@ -64,13 +72,15 @@ export default function Navbar() {
                   }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLElement;
-                    el.style.color = "var(--paper)";
-                    el.style.background = "rgba(201, 169, 97, 0.06)";
+                    el.style.color = gray.active;
+                    el.style.background = "rgba(255,255,255,0.05)";
+                    el.style.boxShadow = "0 0 0 1px rgba(255,255,255,0.04)";
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLElement;
-                    el.style.color = "var(--paper-dim)";
+                    el.style.color = "#888888";
                     el.style.background = "transparent";
+                    el.style.boxShadow = "none";
                   }}
                 >
                   {link.label}
@@ -81,8 +91,29 @@ export default function Navbar() {
 
           <Link
             href="#waitlist"
-            className="btn-primary"
-            style={{ padding: "10px 20px", fontSize: "13px" }}
+            className="inline-flex items-center justify-center font-medium transition-colors"
+            style={{
+              padding: "10px 20px",
+              fontSize: "13px",
+              letterSpacing: "0.01em",
+              borderRadius: "9999px",
+              color: "#e8e8e8",
+              background: gray.line,
+              border: `1px solid ${gray.mid}`,
+              boxShadow: "0 1px 0 rgba(255,255,255,0.04) inset, 0 4px 16px -8px rgba(0,0,0,0.5)",
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.background = gray.mid;
+              el.style.color = "#f5f5f5";
+              el.style.borderColor = "#444444";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.background = gray.line;
+              el.style.color = "#e8e8e8";
+              el.style.borderColor = gray.mid;
+            }}
           >
             Request Access
           </Link>
