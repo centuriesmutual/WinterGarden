@@ -57,6 +57,194 @@ function SectionDivider() {
   );
 }
 
+function ManifestoClosingCta() {
+  return (
+    <>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @media (min-width: 768px) and (hover: hover) {
+              .manifesto-cta-bg {
+                background-attachment: fixed;
+              }
+            }
+          `,
+        }}
+      />
+      <div
+        className="relative w-[100vw] max-w-[100vw] overflow-x-clip
+          ml-[calc(50%_-_50vw)]
+          py-32 md:py-40 lg:py-48
+          text-center"
+        style={{ zIndex: 0 }}
+      >
+        <div
+          className="manifesto-cta-bg absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 0,
+            backgroundImage: "url('/images/cta-bg.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center 30%",
+            opacity: 0.12,
+            backgroundAttachment: "scroll",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 1,
+            background:
+              "linear-gradient(to bottom, #0a0a0a 0%, transparent 25%, transparent 75%, #0a0a0a 100%)",
+          }}
+          aria-hidden
+        />
+
+        <div className="relative z-[10] max-w-4xl mx-auto px-6">
+          <m.div
+            className="flex items-center justify-center gap-3 mb-12"
+            style={{ color: "#444" }}
+            aria-hidden
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <span
+              className="w-10 h-px shrink-0"
+              style={{ background: "#222" }}
+              aria-hidden
+            />
+            <p
+              className="font-mono text-[10px] uppercase"
+              style={{ letterSpacing: "0.4em" }}
+            >
+              WINTERGARDEN / PRIVATE BETA
+            </p>
+            <span
+              className="w-10 h-px shrink-0"
+              style={{ background: "#222" }}
+              aria-hidden
+            />
+          </m.div>
+
+          <m.p
+            className="mb-6 font-extralight italic"
+            style={{
+              color: "#e8e8e8",
+              fontSize: "clamp(3rem, 7vw, 6rem)",
+              fontWeight: 200,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
+            }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            Your playing has a score.
+          </m.p>
+
+          <m.p
+            className="text-sm font-mono uppercase mb-16"
+            style={{ color: "#555555", letterSpacing: "0.2em" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          >
+            Every performance. Archived. Annotated. Yours.
+          </m.p>
+
+          <m.p
+            className="text-base mb-12 max-w-lg mx-auto"
+            style={{ color: "#666666", lineHeight: 1.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          >
+            The system is now accepting its first cohort of performers. Fifteen
+            minutes. Your instrument. A complete picture of where you stand.
+          </m.p>
+
+          <m.div
+            className="flex flex-col items-center justify-center gap-4 md:flex-row
+              md:justify-center md:items-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
+          >
+            <button
+              type="button"
+              onClick={() => {}}
+              className="inline-flex items-center justify-center font-mono text-sm
+                uppercase cursor-pointer
+                bg-[#f0f0f0] text-[#0a0a0a] border border-[#f0f0f0] rounded-none
+                px-10 py-4 tracking-[0.15em] transition-all duration-300 ease-in-out
+                hover:bg-white hover:border-white hover:shadow-[0_0_40px_rgba(255,255,255,0.06)]"
+            >
+              Request a Demo
+            </button>
+            <Link
+              href="#manifesto"
+              className="inline-flex items-center justify-center font-mono text-sm
+                uppercase rounded-none
+                border border-[#222222] bg-transparent
+                text-[#444444] px-8 py-4 tracking-[0.15em] transition-all duration-300
+                hover:border-[#444444] hover:text-[#888888]"
+            >
+              Read the Manifesto →
+            </Link>
+          </m.div>
+
+          <p
+            className="font-mono text-[10px] uppercase mt-6"
+            style={{ color: "#333333", letterSpacing: "0.2em" }}
+          >
+            No account required. Invite only.
+          </p>
+
+          <div
+            className="w-full max-w-xs h-px mx-auto mt-20"
+            style={{ background: "#1a1a1a" }}
+            aria-hidden
+          />
+
+          <m.div
+            className="flex flex-wrap items-start justify-center gap-12 mt-6"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-5%" }}
+            transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+          >
+            {(
+              [
+                { val: "±0.01¢", label: "pitch resolution" },
+                { val: "±1ms", label: "temporal resolution" },
+                { val: "0–1000", label: "composite score range" },
+              ] as const
+            ).map((row) => (
+              <div key={row.label} className="text-center min-w-0 max-w-[10rem]">
+                <p className="font-mono text-lg" style={{ color: "#555555" }}>
+                  {row.val}
+                </p>
+                <p
+                  className="font-mono text-[10px] uppercase mt-1"
+                  style={{ color: "#333333", letterSpacing: "0.2em" }}
+                >
+                  {row.label}
+                </p>
+              </div>
+            ))}
+          </m.div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 function ArchitectureSection() {
   return (
     <div className="w-full">
@@ -248,53 +436,6 @@ function ArchitectureSection() {
         </div>
       </div>
 
-      <div
-        className="w-full h-px mt-10 lg:mt-12"
-        style={{ background: "#1e1e1e" }}
-        aria-hidden
-      />
-
-      <m.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="w-full pl-0 md:pl-0 lg:pl-[max(0px,calc(100%/12*1))]"
-        style={{ paddingTop: "5rem", paddingBottom: "6rem" }}
-      >
-        <p
-          className="font-light italic max-w-[20ch] md:max-w-none"
-          style={{
-            color: "#c0c0c0",
-            fontSize: "clamp(2.8rem, 6vw, 5.5rem)",
-            fontWeight: 300,
-            letterSpacing: "-0.02em",
-            lineHeight: 1.1,
-          }}
-        >
-          Your playing has a score.
-        </p>
-        <p
-          className="text-sm font-mono uppercase mt-4"
-          style={{ color: "#444", letterSpacing: "0.15em" }}
-        >
-          Every performance. Archived. Annotated. Yours.
-        </p>
-        <div className="flex flex-wrap gap-4 mt-8">
-          <Link
-            href="#waitlist"
-            className="inline-flex items-center justify-center text-sm px-6 py-3 rounded-none bg-[#f0f0f0] text-[#0a0a0a] transition-colors duration-200 hover:bg-white"
-          >
-            Request Access
-          </Link>
-          <Link
-            href="#manifesto"
-            className="inline-flex items-center justify-center text-sm px-6 py-3 bg-transparent text-[#555555] transition-colors duration-200 hover:text-[#cccccc]"
-          >
-            Read the Manifesto →
-          </Link>
-        </div>
-      </m.div>
     </div>
   );
 }
@@ -463,6 +604,7 @@ export default function Manifesto() {
             transition={{ duration: 0.6 }}
           >
             <ArchitectureSection />
+            <ManifestoClosingCta />
           </m.div>
         </div>
       </LazyMotion>
