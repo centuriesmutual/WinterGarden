@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #030303;
+  --deep: #080808;
+  --surface: #0E0E0E;
+  --panel: #131313;
+  --border: #1A1A1A;
+  --border-lit: #242424;
+  --white: #EDF0EE;
+  --white-dim: #7A8C82;
+  --white-ghost: #2E3830;
+  --tiffany: #81C5B8;
+  --tiffany-dim: #4A8C81;
+  --tiffany-deep: #1A3D38;
+  --teal-ghost: #0F2420;
+}
+
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+  cursor: none;
+  box-sizing: border-box;
+  border-color: var(--border);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--black);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-dm-mono), monospace;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--tiffany);
+  color: var(--black);
+}
+
+::-moz-selection {
+  background: var(--tiffany);
+  color: var(--black);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--border);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--tiffany);
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10%      { transform: translate(-1%, -1%); }
+  30%      { transform: translate(1%, 1%); }
+  50%      { transform: translate(-1%, 1%); }
+  70%      { transform: translate(1%, -1%); }
+  90%      { transform: translate(-1%, 0); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.6); opacity: 0.6; }
+}
+
+.grain-overlay {
+  position: fixed;
+  inset: -10%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  animation: grain 0.3s steps(6) infinite;
+  will-change: transform;
+}
+
+.wg-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--white);
+  border: 1px solid transparent;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.12s ease, height 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
+  mix-blend-mode: difference;
+}
+
+.wg-cursor.is-hover {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 1px solid var(--tiffany);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  *,
+  *::before,
+  *::after {
+    cursor: auto;
+  }
+  .wg-cursor {
+    display: none;
+  }
+}
+
+.hide-native-cursor,
+.hide-native-cursor * {
+  cursor: none !important;
+}
