@@ -4,16 +4,12 @@ import { LazyMotion, domAnimation, m } from "framer-motion";
 
 const sectionBg = "#0a0a0a";
 
-type Feature = { label: string; desc: string };
-
 type Movement = {
   roman: string;
   movementLabel: string;
   action: string;
   tempo: string;
   body: string;
-  features: [Feature, Feature, Feature];
-  closer: string;
 };
 
 const MOVEMENTS: Movement[] = [
@@ -23,12 +19,6 @@ const MOVEMENTS: Movement[] = [
     action: "Perform",
     tempo: "Allegro",
     body: "You play. Wintergarden records the performance with the same precision the repertoire demands: pitch, time, and dynamics measured continuously. That data is the input to everything that follows — including the settlement path that runs on the Avalanche network. Nothing is approximated. Nothing is lost before scoring.",
-    features: [
-      { label: "PITCH & TIME", desc: "Deviation and onset timing captured in real time." },
-      { label: "DYNAMIC CONTOUR", desc: "Expression mapped across the full phrase." },
-      { label: "SESSION PAYLOAD", desc: "A complete capture, ready for analysis and rank." },
-    ],
-    closer: "The take is the starting signal.",
   },
   {
     roman: "II",
@@ -36,12 +26,6 @@ const MOVEMENTS: Movement[] = [
     action: "Analyse",
     tempo: "Andante",
     body: "From your session, a Wintergarden Score is composed: pitch accuracy, rhythmic consistency, and expression are weighted and resolved into a single 0–1000 rating — normalised by repertoire and difficulty. That score is what the ranking and payout logic use; it is the same number every participant is judged against before anything is sent on Avalanche.",
-    features: [
-      { label: "COMPOSITE SCORE", desc: "One reproducible 0–1000 rating per session." },
-      { label: "REFERENCE CALIBRATION", desc: "Scored against professional reference material." },
-      { label: "RANK INPUT", desc: "The score that feeds the weekly standing and pool share." },
-    ],
-    closer: "One number. One standard. No ambiguity.",
   },
   {
     roman: "III",
@@ -49,12 +33,6 @@ const MOVEMENTS: Movement[] = [
     action: "Ascend",
     tempo: "Con brio",
     body: "Top performers share a USDC pool on Avalanche. Each week, the protocol allocates that pool by rank: your standing in the active cohort sets your share. Payouts are USDC on the Avalanche C-Chain — sent to the wallet you connect to Wintergarden. Finality and fees you expect from Avalanche; the schedule and split are fixed and transparent.",
-    features: [
-      { label: "AVALANCHE SETTLEMENT", desc: "USDC rewards settled on the Avalanche C-Chain." },
-      { label: "WEEKLY POOL", desc: "A recurring pool, split pro-rata by rank." },
-      { label: "WALLET PAYOUT", desc: "USDC delivered to your connected wallet address." },
-    ],
-    closer: "Rank earns share. Avalanche delivers it.",
   },
 ];
 
@@ -66,7 +44,301 @@ const ECONOMY_NODES: { label: string; sub: string }[] = [
   { label: "USDC to wallet", sub: "C-Chain transfer to you" },
 ];
 
+/* Programme illustrations — 400×220 viewBox, stroke-only, ruling-pen feel */
+const ILL = "var(--ill-stroke, #2e2e2e)";
+
+function movement1CapturePaths() {
+  const a = 133;
+  const b = 267;
+  const mid: string[] = [];
+  let k = 0;
+  for (let x = a; x < b - 0.01; x += 0.85) {
+    const t = ((x - a) / (b - a)) * Math.PI * 2 * 3.5;
+    const y = 110 + 40 * Math.sin(t);
+    if (k++ === 0) {
+      mid.push(`M ${a} ${y.toFixed(2)}`);
+    } else {
+      mid.push(`L ${x.toFixed(1)} ${y.toFixed(2)}`);
+    }
+  }
+  mid.push("L 267 110");
+  const tail: string[] = ["M 267 110"];
+  for (let x = 267.8; x <= 400; x += 0.85) {
+    const u = (x - b) / (400 - b);
+    const env = 30 * (1 - u) * (1 - u) + 4.5;
+    const ph = (x - b) * 0.21;
+    const y = 110 + env * Math.sin(ph);
+    tail.push(`L ${x.toFixed(1)} ${y.toFixed(2)}`);
+  }
+  return { accent: mid.join(" "), tail: tail.join(" ") };
+}
+
+function IllPerform() {
+  const { accent, tail } = movement1CapturePaths();
+  return (
+    <svg
+      className="w-full h-auto"
+      viewBox="0 0 400 220"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <line x1="0" y1="110" x2="400" y2="110" stroke="#1e1e1e" strokeWidth={0.75} />
+      <path
+        d={accent}
+        stroke="#444444"
+        strokeWidth={1.25}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <path
+        d={tail}
+        stroke={ILL}
+        strokeWidth={0.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <line
+        x1="166.3"
+        y1="58"
+        x2="166.3"
+        y2="66"
+        stroke="#252525"
+        strokeWidth={0.75}
+      />
+      <line
+        x1="200"
+        y1="58"
+        x2="200"
+        y2="66"
+        stroke="#252525"
+        strokeWidth={0.75}
+      />
+      <line
+        x1="233.7"
+        y1="58"
+        x2="233.7"
+        y2="66"
+        stroke="#252525"
+        strokeWidth={0.75}
+      />
+      <line
+        x1="133"
+        y1="168"
+        x2="267"
+        y2="168"
+        stroke="#1e1e1e"
+        strokeWidth={0.75}
+      />
+      <line
+        x1="133"
+        y1="162"
+        x2="133"
+        y2="174"
+        stroke="#1e1e1e"
+        strokeWidth={0.75}
+      />
+      <line
+        x1="267"
+        y1="162"
+        x2="267"
+        y2="174"
+        stroke="#1e1e1e"
+        strokeWidth={0.75}
+      />
+      <line
+        x1="380"
+        y1="80"
+        x2="380"
+        y2="140"
+        stroke="#333"
+        strokeWidth={1}
+      />
+    </svg>
+  );
+}
+
+const ILL2_NOTES: { x: number; y: number }[] = [
+  { x: 48, y: 60 },
+  { x: 75, y: 85 },
+  { x: 95, y: 110 },
+  { x: 128, y: 135 },
+  { x: 118, y: 60 },
+  { x: 188, y: 160 },
+  { x: 210, y: 85 },
+  { x: 245, y: 110 },
+  { x: 60, y: 135 },
+];
+
+const ILL2_FX = 360;
+const ILL2_FY = 110;
+
+function IllAnalyse() {
+  return (
+    <svg
+      className="w-full h-auto"
+      viewBox="0 0 400 220"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      {[60, 85, 110, 135, 160].map((y) => (
+        <line
+          key={y}
+          x1="0"
+          y1={y}
+          x2="400"
+          y2={y}
+          stroke="#1a1a1a"
+          strokeWidth={0.5}
+        />
+      ))}
+      {ILL2_NOTES.map((n) => (
+        <line
+          key={`ray-${n.x}-${n.y}`}
+          x1={n.x}
+          y1={n.y}
+          x2={ILL2_FX}
+          y2={ILL2_FY}
+          stroke="#222222"
+          strokeWidth={0.75}
+        />
+      ))}
+      {ILL2_NOTES.map((n) => (
+        <circle
+          key={`nh-${n.x}-${n.y}`}
+          cx={n.x}
+          cy={n.y}
+          r={3}
+          fill="none"
+          stroke="#2a2a2a"
+          strokeWidth={0.75}
+        />
+      ))}
+      <circle
+        cx={ILL2_FX}
+        cy={ILL2_FY}
+        r={10}
+        fill="none"
+        stroke="#444444"
+        strokeWidth={1.25}
+      />
+      <circle
+        cx={ILL2_FX}
+        cy={ILL2_FY}
+        r={3}
+        fill="none"
+        stroke="#333333"
+        strokeWidth={0.75}
+      />
+      <path
+        d="M 342 110 A 18 18 0 1 1 377.1 116.1"
+        stroke="#252525"
+        strokeWidth={0.5}
+        fill="none"
+        strokeLinecap="round"
+      />
+      <path
+        d="M 334 110 A 26 26 0 1 1 384.4 119"
+        stroke="#252525"
+        strokeWidth={0.5}
+        fill="none"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+const ILL3_CX = [32, 88, 144, 200, 256, 312, 368];
+const ILL3_TOPS = [50, 80, 105, 125, 105, 80, 60];
+const ILL3_BW = 5;
+
+function IllAscend() {
+  const tTop = ILL3_TOPS[0];
+  return (
+    <svg
+      className="w-full h-auto"
+      viewBox="0 0 400 220"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <line
+        x1="0"
+        y1="180"
+        x2="400"
+        y2="180"
+        stroke="#1e1e1e"
+        strokeWidth={0.75}
+      />
+      {ILL3_CX.map((cx, i) => {
+        const y1 = ILL3_TOPS[i];
+        const left = cx - ILL3_BW;
+        const right = cx + ILL3_BW;
+        const accent = i === 0;
+        return (
+          <g key={cx}>
+            <line
+              x1={left}
+              y1={y1}
+              x2={left}
+              y2="180"
+              stroke={accent ? "#444444" : "#1e1e1e"}
+              strokeWidth={accent ? 1.25 : 0.75}
+            />
+            <line
+              x1={right}
+              y1={y1}
+              x2={right}
+              y2="180"
+              stroke={accent ? "#444444" : "#1e1e1e"}
+              strokeWidth={accent ? 1.25 : 0.75}
+            />
+            <line
+              x1={left}
+              y1={y1}
+              x2={right}
+              y2={y1}
+              stroke={accent ? "#444444" : "#1e1e1e"}
+              strokeWidth={accent ? 1.25 : 0.75}
+            />
+          </g>
+        );
+      })}
+      <path
+        d="M 32 50 C 52 22 72 22 88 80 C 108 100 128 100 144 105"
+        stroke="#222222"
+        strokeWidth={0.5}
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <line
+        x1="0"
+        y1={tTop}
+        x2="400"
+        y2={tTop}
+        stroke="#252525"
+        strokeWidth={0.75}
+        strokeDasharray="2 4"
+      />
+      <path
+        d="M 27 32 L 37 32 L 32 40.5 Z"
+        fill="none"
+        stroke="#333333"
+        strokeWidth={0.75}
+        strokeLinejoin="miter"
+      />
+    </svg>
+  );
+}
+
+const ILLUSTRATIONS = [IllPerform, IllAnalyse, IllAscend] as const;
+
 function MovementBlock({ item, index }: { item: Movement; index: number }) {
+  const Ill = ILLUSTRATIONS[index];
   return (
     <m.article
       initial={{ opacity: 0, y: 24 }}
@@ -129,42 +401,12 @@ function MovementBlock({ item, index }: { item: Movement; index: number }) {
           {item.action}
         </h3>
       </div>
-      <p
-        className="text-sm mb-8"
-        style={{ color: "#777", lineHeight: 1.9 }}
-      >
+      <p className="text-sm" style={{ color: "#777", lineHeight: 1.9 }}>
         {item.body}
       </p>
-      <div>
-        {item.features.map((f, i) => (
-          <div
-            key={f.label}
-            className="py-3"
-            style={{
-              borderTop: i > 0 ? "1px solid #161616" : undefined,
-            }}
-          >
-            <p
-              className="font-mono text-xs uppercase"
-              style={{ color: "#ccc", letterSpacing: "0.1em" }}
-            >
-              {f.label}
-            </p>
-            <p
-              className="text-xs mt-1"
-              style={{ color: "#555", lineHeight: 1.6 }}
-            >
-              {f.desc}
-            </p>
-          </div>
-        ))}
+      <div className="mt-8 w-full max-w-[480px] mx-auto border-t border-[#161616] pt-8 md:max-w-none md:mx-0">
+        <Ill />
       </div>
-      <p
-        className="text-xs italic mt-6 pt-4"
-        style={{ color: "#333", borderTop: "1px solid #161616" }}
-      >
-        {item.closer}
-      </p>
     </m.article>
   );
 }
