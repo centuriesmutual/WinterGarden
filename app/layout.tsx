@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
         <GrainOverlay />
         <Navbar />
         <main>{children}</main>
+        <Footer />
         <Analytics />
       </body>
     </html>
