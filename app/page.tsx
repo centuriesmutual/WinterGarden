@@ -1,6 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import Manifesto from "@/components/sections/Manifesto";
-import HowItWorks from "@/components/sections/HowItWorks";
+import WalletMechanics from "@/components/sections/WalletMechanics";
 import SessionDemo from "@/components/demo/SessionDemo";
 
 export default function HomePage() {
@@ -8,7 +8,7 @@ export default function HomePage() {
     <>
       <Hero />
       <Manifesto />
-      <HowItWorks />
+      <WalletMechanics />
       <SessionDemo />
       <div id="waitlist" className="sr-only" tabIndex={-1} />
     </>
