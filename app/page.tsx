@@ -5,6 +5,7 @@ import ScoreDisplay from "@/components/sections/ScoreDisplay";
 import GlobalNetwork from "@/components/sections/GlobalNetwork";
 import Incentives from "@/components/sections/Incentives";
 import CallToAction from "@/components/sections/CallToAction";
+import SessionDemo from "@/components/demo/SessionDemo";
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Hero />
       <Manifesto />
       <HowItWorks />
+      <SessionDemo />
       <ScoreDisplay />
       <GlobalNetwork />
       <Incentives />
