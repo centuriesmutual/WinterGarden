@@ -39,7 +39,7 @@ export default function Hero() {
           className="relative w-full flex flex-col px-5 md:px-10"
           style={{
             minHeight: "100svh",
-            paddingTop: "104px",
+            paddingTop: "136px",
             paddingBottom: "56px",
           }}
         >
@@ -49,7 +49,7 @@ export default function Hero() {
             style={{
               left: "6vw",
               right: "6vw",
-              top: "128px",
+              top: "152px",
               bottom: "32px",
               maxHeight: "calc(100% - 160px)",
               border: `1px solid ${g.b}`,
