@@ -2,12 +2,13 @@
 
 import StatBlock from "@/components/ui/StatBlock";
 import RuledLine from "@/components/ui/RuledLine";
+import Ornament from "@/components/ui/Ornament";
 
 const STATS = [
-  { value: "94,210", label: "REGISTERED PERFORMERS" },
-  { value: "1.2M", label: "SESSIONS SCORED" },
-  { value: "183", label: "COUNTRIES" },
-  { value: "$2.4M", label: "IN REWARDS DISTRIBUTED" },
+  { value: "94,210", label: "Registered Performers" },
+  { value: "1.2M", label: "Performances Scored" },
+  { value: "183", label: "Nations Represented" },
+  { value: "$2.4M", label: "Rewards Distributed" },
 ];
 
 const CITIES = [
@@ -26,21 +27,19 @@ const CITIES = [
 ];
 
 function DotGrid() {
-  const cols = 48;
-  const rows = 22;
   const dots: string[] = [];
-  for (let i = 0; i < cols * rows; i++) dots.push("·");
+  for (let i = 0; i < 48 * 22; i++) dots.push("·");
   return (
     <div
       aria-hidden
-      className="absolute inset-0 font-mono select-none"
+      className="absolute inset-0 font-body select-none"
       style={{
         fontSize: "10px",
-        color: "var(--white-ghost)",
-        opacity: 0.15,
+        color: "var(--gold-deep)",
+        opacity: 0.6,
         lineHeight: "12px",
         letterSpacing: "6px",
-        padding: "12px",
+        padding: "14px",
         whiteSpace: "pre-wrap",
         wordBreak: "break-all",
       }}
@@ -55,105 +54,159 @@ export default function GlobalNetwork() {
     <section
       id="network"
       className="relative w-full"
-      style={{ background: "var(--black)" }}
+      style={{ background: "var(--ink)" }}
     >
-      <div className="w-full px-6 md:px-10 py-24 md:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          <div>
-            <div
-              className="font-mono"
-              style={{
-                fontSize: "10px",
-                color: "var(--tiffany)",
-                letterSpacing: "0.4em",
-                marginBottom: "40px",
-              }}
-            >
-              § THE NETWORK
-            </div>
+      <div className="w-full px-6 md:px-10 py-24 md:py-36">
+        <div className="text-center" style={{ marginBottom: "72px" }}>
+          <Ornament variant="star" label="The Global Society" />
+          <h2
+            className="font-display italic"
+            style={{
+              fontSize: "clamp(36px, 5vw, 60px)",
+              lineHeight: 1.05,
+              color: "var(--paper)",
+              marginTop: "28px",
+              fontWeight: 500,
+            }}
+          >
+            A circle of measured musicians.
+          </h2>
+          <p
+            className="font-serif italic mx-auto"
+            style={{
+              fontSize: "18px",
+              color: "var(--paper-dim)",
+              marginTop: "20px",
+              maxWidth: "560px",
+              lineHeight: 1.6,
+            }}
+          >
+            Performers from every continent, every tradition, every instrument
+            — each one verified, each one counted.
+          </p>
+        </div>
 
-            <div className="grid grid-cols-2 gap-x-10 gap-y-14">
-              {STATS.map((stat) => (
-                <StatBlock
-                  key={stat.label}
-                  value={stat.value}
-                  label={stat.label}
-                  animate
-                />
-              ))}
-            </div>
-
-            <div
-              className="font-mono"
-              style={{
-                marginTop: "56px",
-                fontSize: "11px",
-                color: "var(--white-ghost)",
-                letterSpacing: "0.15em",
-                lineHeight: 1.8,
-              }}
-            >
-              Avalanche Network · Circle USDC · Real-time verified scoring
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center max-w-[1280px] mx-auto">
+          <div className="grid grid-cols-2 gap-x-10 gap-y-14 lg:gap-y-16">
+            {STATS.map((stat) => (
+              <StatBlock
+                key={stat.label}
+                value={stat.value}
+                label={stat.label}
+                animate
+              />
+            ))}
           </div>
 
           <div className="hidden md:flex lg:justify-end">
             <div
               className="relative"
               style={{
-                width: "480px",
+                width: "520px",
                 maxWidth: "100%",
-                height: "280px",
-                background: "var(--surface)",
-                border: "1px solid var(--border)",
+                height: "300px",
+                background: "var(--deep)",
+                border: "1px solid var(--gold-ghost)",
+                padding: "10px",
               }}
             >
-              <DotGrid />
+              <div
+                className="relative w-full h-full"
+                style={{ border: "1px solid var(--gold-deep)" }}
+              >
+                <DotGrid />
 
-              {CITIES.map((city) => (
-                <div
-                  key={city.name}
-                  data-cursor
-                  className="group absolute"
-                  style={{
-                    left: `${city.x}%`,
-                    top: `${city.y}%`,
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
+                {CITIES.map((city) => (
                   <div
-                    aria-hidden
+                    key={city.name}
+                    data-cursor
+                    className="group absolute"
                     style={{
-                      width: "4px",
-                      height: "4px",
-                      background: "var(--tiffany)",
-                      animation: `pulse-dot 2s ease-in-out infinite`,
-                      animationDelay: `${city.delay}s`,
-                    }}
-                  />
-                  <span
-                    className="opacity-0 group-hover:opacity-100 font-mono pointer-events-none"
-                    style={{
-                      position: "absolute",
-                      top: "-14px",
-                      left: "8px",
-                      fontSize: "8px",
-                      color: "var(--tiffany-dim)",
-                      letterSpacing: "0.2em",
-                      whiteSpace: "nowrap",
-                      transition: "opacity 150ms ease",
+                      left: `${city.x}%`,
+                      top: `${city.y}%`,
+                      transform: "translate(-50%, -50%)",
                     }}
                   >
-                    {city.name.toUpperCase()}
-                  </span>
-                </div>
-              ))}
+                    <div
+                      aria-hidden
+                      style={{
+                        width: "6px",
+                        height: "6px",
+                        background: "var(--gold)",
+                        animation: "pulse-dot 2.4s ease-in-out infinite",
+                        animationDelay: `${city.delay}s`,
+                        boxShadow: "0 0 0 1px var(--gold-deep)",
+                      }}
+                    />
+                    <span
+                      className="opacity-0 group-hover:opacity-100 font-serif italic pointer-events-none"
+                      style={{
+                        position: "absolute",
+                        top: "-18px",
+                        left: "10px",
+                        fontSize: "10px",
+                        color: "var(--gold)",
+                        letterSpacing: "0.08em",
+                        whiteSpace: "nowrap",
+                        transition: "opacity 180ms ease",
+                      }}
+                    >
+                      {city.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div
+                className="font-body smallcaps"
+                style={{
+                  position: "absolute",
+                  bottom: "-26px",
+                  left: 0,
+                  right: 0,
+                  textAlign: "center",
+                  fontSize: "9px",
+                  color: "var(--paper-ghost)",
+                  letterSpacing: "0.45em",
+                }}
+              >
+                Live · 12 representative cities
+              </div>
             </div>
           </div>
         </div>
+
+        <div
+          className="max-w-[760px] mx-auto text-center"
+          style={{ marginTop: "96px" }}
+        >
+          <div
+            aria-hidden
+            style={{
+              width: "60px",
+              height: "1px",
+              background: "var(--gold-deep)",
+              margin: "0 auto 24px",
+            }}
+          />
+          <p
+            className="font-serif italic"
+            style={{
+              fontSize: "14px",
+              color: "var(--paper-ghost)",
+              letterSpacing: "0.18em",
+              lineHeight: 1.8,
+            }}
+          >
+            Avalanche Network{" "}
+            <span style={{ color: "var(--gold-deep)" }}>·</span> Circle USDC{" "}
+            <span style={{ color: "var(--gold-deep)" }}>·</span> Real-time
+            Verified Scoring
+          </p>
+        </div>
       </div>
 
-      <RuledLine label="§ 005 — INCENTIVES" sectionNumber="005" />
+      <RuledLine label="Opus V — The Rewards" sectionNumber="V" />
     </section>
   );
 }

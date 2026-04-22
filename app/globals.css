@@ -3,19 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --black: #030303;
-  --deep: #080808;
-  --surface: #0E0E0E;
-  --panel: #131313;
-  --border: #1A1A1A;
-  --border-lit: #242424;
-  --white: #EDF0EE;
-  --white-dim: #7A8C82;
-  --white-ghost: #2E3830;
-  --tiffany: #81C5B8;
-  --tiffany-dim: #4A8C81;
-  --tiffany-deep: #1A3D38;
-  --teal-ghost: #0F2420;
+  --void: #000000;
+  --ink: #070503;
+  --black: #0A0806;
+  --deep: #120E09;
+  --surface: #18130C;
+  --panel: #1F1810;
+  --sepia: #2B211A;
+  --border: #2A2118;
+  --border-lit: #3A2E22;
+  --paper: #EFE8D8;
+  --paper-dim: #B8AD96;
+  --paper-ghost: #5A5142;
+  --paper-shadow: #342D22;
+  --gold: #C9A961;
+  --gold-dim: #8A7644;
+  --gold-deep: #3E331B;
+  --gold-ghost: #1F1A0F;
 }
 
 *,
@@ -31,8 +35,8 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--black);
-  color: var(--white);
+  background: var(--ink);
+  color: var(--paper);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,29 +46,38 @@ html {
 }
 
 body {
-  font-family: var(--font-dm-mono), monospace;
+  font-family: var(--font-garamond), "EB Garamond", Georgia, serif;
   overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at top, rgba(201, 169, 97, 0.04) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom, rgba(201, 169, 97, 0.03) 0%, transparent 60%),
+    var(--ink);
+  background-attachment: fixed;
 }
 
 ::selection {
-  background: var(--tiffany);
-  color: var(--black);
+  background: var(--gold);
+  color: var(--ink);
 }
 
 ::-moz-selection {
-  background: var(--tiffany);
-  color: var(--black);
+  background: var(--gold);
+  color: var(--ink);
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--border);
+  background: var(--ink);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--tiffany);
+  background: var(--gold-deep);
+  border: 1px solid var(--gold-ghost);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dim);
 }
 
 @keyframes grain {
@@ -78,7 +91,12 @@ body {
 
 @keyframes pulse-dot {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50%      { transform: scale(1.6); opacity: 0.6; }
+  50%      { transform: scale(1.5); opacity: 0.55; }
+}
+
+@keyframes slow-pulse {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 1; }
 }
 
 .grain-overlay {
@@ -86,7 +104,7 @@ body {
   inset: -10%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.04;
+  opacity: 0.05;
   mix-blend-mode: overlay;
   animation: grain 0.3s steps(6) infinite;
   will-change: transform;
@@ -96,22 +114,22 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 6px;
-  height: 6px;
-  background: var(--white);
-  border: 1px solid transparent;
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  border: 1px solid var(--gold);
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
-  transition: width 0.12s ease, height 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
-  mix-blend-mode: difference;
+  transition: width 0.18s ease, height 0.18s ease, background-color 0.18s ease,
+    border-color 0.18s ease;
 }
 
 .wg-cursor.is-hover {
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
   background: transparent;
-  border: 1px solid var(--tiffany);
+  border: 1px solid var(--gold);
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -125,7 +143,46 @@ body {
   }
 }
 
-.hide-native-cursor,
-.hide-native-cursor * {
-  cursor: none !important;
+.dropcap::first-letter {
+  font-family: var(--font-playfair), "Playfair Display", serif;
+  font-size: 5.2em;
+  line-height: 0.9;
+  float: left;
+  padding: 6px 14px 0 0;
+  color: var(--gold);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.smallcaps {
+  font-variant: small-caps;
+  font-feature-settings: "smcp" 1, "c2sc" 0;
+  letter-spacing: 0.28em;
+}
+
+.engraved {
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.9),
+    0 -1px 0 rgba(201, 169, 97, 0.12);
+}
+
+.rule-ornament {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  color: var(--gold-dim);
+}
+.rule-ornament::before,
+.rule-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--gold-deep) 30%,
+    var(--gold-deep) 70%,
+    transparent
+  );
 }

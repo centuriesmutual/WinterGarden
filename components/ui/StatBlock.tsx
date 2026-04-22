@@ -56,7 +56,7 @@ export default function StatBlock({ value, label, animate = false }: Props) {
       return;
     }
 
-    const duration = 1400;
+    const duration = 1600;
     const start = performance.now();
     let raf = 0;
 
@@ -77,26 +77,35 @@ export default function StatBlock({ value, label, animate = false }: Props) {
   }, [animate, inView, parsed, value, grouped]);
 
   return (
-    <div ref={ref} className="flex flex-col">
+    <div ref={ref} className="flex flex-col items-start">
       <span
-        className="font-display text-white block"
+        className="font-display"
         style={{
-          fontSize: "clamp(48px, 6vw, 72px)",
+          fontSize: "clamp(44px, 5.2vw, 72px)",
           lineHeight: 1,
-          letterSpacing: "0.02em",
+          letterSpacing: "-0.005em",
+          color: "var(--paper)",
+          fontWeight: 500,
         }}
       >
         {display}
       </span>
       <span
-        className="font-mono block"
+        aria-hidden
         style={{
-          color: "var(--white-ghost)",
+          marginTop: "14px",
+          width: "36px",
+          height: "1px",
+          background: "var(--gold)",
+        }}
+      />
+      <span
+        className="font-body smallcaps"
+        style={{
+          color: "var(--paper-ghost)",
           fontSize: "10px",
-          letterSpacing: "0.3em",
-          borderLeft: "1px solid var(--tiffany)",
-          paddingLeft: "8px",
-          marginTop: "16px",
+          letterSpacing: "0.38em",
+          marginTop: "12px",
         }}
       >
         {label}

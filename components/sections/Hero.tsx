@@ -2,7 +2,7 @@
 
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import Link from "next/link";
-import Spectrogram from "./Spectrogram";
+import Ornament from "@/components/ui/Ornament";
 import RuledLine from "@/components/ui/RuledLine";
 
 export default function Hero() {
@@ -12,145 +12,253 @@ export default function Hero() {
       className="relative w-full overflow-hidden"
       style={{
         minHeight: "100svh",
-        background: "var(--black)",
+        background:
+          "radial-gradient(ellipse at center, rgba(201,169,97,0.06) 0%, transparent 60%), var(--ink)",
       }}
     >
       <LazyMotion features={domAnimation}>
         <div
-          className="relative w-full flex flex-col"
-          style={{ minHeight: "100svh", paddingTop: "56px" }}
+          className="relative w-full flex flex-col items-center justify-center text-center px-6 md:px-10"
+          style={{ minHeight: "100svh", paddingTop: "96px", paddingBottom: "56px" }}
         >
-          <div className="hidden md:block absolute top-0 right-0 h-full w-[42vw] pt-20 pr-8 pb-24">
-            <Spectrogram />
-          </div>
+          <div
+            aria-hidden
+            className="hidden md:block absolute"
+            style={{
+              left: "6vw",
+              right: "6vw",
+              top: "120px",
+              bottom: "120px",
+              border: "1px solid var(--gold-deep)",
+              pointerEvents: "none",
+            }}
+          />
+          <div
+            aria-hidden
+            className="hidden md:block absolute"
+            style={{
+              left: "calc(6vw + 10px)",
+              right: "calc(6vw + 10px)",
+              top: "130px",
+              bottom: "130px",
+              border: "1px solid var(--gold-ghost)",
+              pointerEvents: "none",
+            }}
+          />
 
-          <div className="relative flex-1 flex items-end">
-            <div className="w-full px-6 md:px-10 pb-14 md:pb-24 max-w-full md:max-w-[58vw]">
-              <m.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.05 }}
-                className="font-mono"
-                style={{
-                  fontSize: "10px",
-                  color: "var(--tiffany)",
-                  letterSpacing: "0.4em",
-                  marginBottom: "24px",
-                }}
-              >
-                § PERFORMANCE INTELLIGENCE SYSTEM
-              </m.div>
+          <m.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="flex items-center justify-center gap-6"
+            style={{ marginBottom: "36px" }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: "60px",
+                height: "1px",
+                background: "var(--gold-deep)",
+              }}
+            />
+            <span
+              className="font-body smallcaps"
+              style={{
+                fontSize: "11px",
+                color: "var(--gold)",
+                letterSpacing: "0.55em",
+              }}
+            >
+              Anno MMXXV
+            </span>
+            <span
+              aria-hidden
+              style={{
+                width: "60px",
+                height: "1px",
+                background: "var(--gold-deep)",
+              }}
+            />
+          </m.div>
 
-              <h1
-                className="font-display text-white block"
-                style={{
-                  fontSize: "11vw",
-                  lineHeight: 0.85,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                <m.span
-                  initial={{ x: -60, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                  className="block"
-                >
-                  WINTER
-                </m.span>
-                <m.span
-                  initial={{ x: -60, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-                  className="block"
-                >
-                  GARDEN
-                </m.span>
-              </h1>
+          <m.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="font-body smallcaps"
+            style={{
+              fontSize: "12px",
+              color: "var(--paper-dim)",
+              letterSpacing: "0.5em",
+              marginBottom: "28px",
+            }}
+          >
+            A Conservatory of Measured Performance
+          </m.p>
 
-              <m.p
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.85 }}
-                className="font-serif italic"
-                style={{
-                  fontSize: "20px",
-                  color: "var(--white-dim)",
-                  marginTop: "20px",
-                }}
-              >
-                Where musicians are measured.
-              </m.p>
+          <m.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.35 }}
+            className="font-display italic"
+            style={{
+              fontSize: "clamp(64px, 12vw, 180px)",
+              lineHeight: 0.95,
+              color: "var(--paper)",
+              letterSpacing: "-0.01em",
+              fontWeight: 500,
+            }}
+          >
+            Wintergarden
+          </m.h1>
 
-              <div
-                className="font-mono"
-                style={{
-                  fontSize: "12px",
-                  color: "var(--white-ghost)",
-                  lineHeight: 2,
-                  marginTop: "28px",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                {[
-                  "Score your performance.",
-                  "Compete globally. Earn.",
-                ].map((line, i) => (
-                  <m.span
-                    key={line}
-                    className="block"
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.95 + i * 0.1 }}
-                  >
-                    {line}
-                  </m.span>
-                ))}
-              </div>
+          <m.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.9, delay: 1.1 }}
+            className="flex items-center justify-center gap-5"
+            style={{
+              marginTop: "32px",
+              width: "min(520px, 80%)",
+              transformOrigin: "center",
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                flex: 1,
+                height: "1px",
+                background:
+                  "linear-gradient(to right, transparent, var(--gold-deep))",
+              }}
+            />
+            <span
+              className="font-serif"
+              style={{ color: "var(--gold)", fontSize: "18px" }}
+            >
+              ❦
+            </span>
+            <span
+              aria-hidden
+              style={{
+                flex: 1,
+                height: "1px",
+                background:
+                  "linear-gradient(to left, transparent, var(--gold-deep))",
+              }}
+            />
+          </m.div>
 
-              <m.div
-                className="flex items-center flex-wrap"
-                style={{ marginTop: "48px" }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.2 }}
-              >
-                <Link
-                  href="#waitlist"
-                  data-cursor
-                  className="font-display inline-flex items-center border border-tiffany text-tiffany hover:bg-tiffany hover:text-black transition-colors"
-                  style={{
-                    fontSize: "15px",
-                    letterSpacing: "0.3em",
-                    padding: "14px 36px",
-                    transitionDuration: "150ms",
-                  }}
-                >
-                  ENTER THE PLATFORM
-                </Link>
-                <Link
-                  href="#manifesto"
-                  data-cursor
-                  className="group font-mono inline-flex items-center"
-                  style={{
-                    fontSize: "11px",
-                    color: "var(--white-ghost)",
-                    marginLeft: "32px",
-                    letterSpacing: "0.15em",
-                  }}
-                >
-                  <span className="transition-colors group-hover:text-white-dim group-hover:[text-decoration:underline] group-hover:[text-decoration-color:var(--tiffany)]">
-                    → read the manifesto
-                  </span>
-                </Link>
-              </m.div>
-            </div>
-          </div>
+          <m.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.25 }}
+            className="font-serif italic"
+            style={{
+              fontSize: "clamp(20px, 2.2vw, 28px)",
+              color: "var(--paper-dim)",
+              marginTop: "28px",
+              maxWidth: "640px",
+              lineHeight: 1.4,
+            }}
+          >
+            Where the performance is measured,
+            <br className="hidden sm:inline" />
+            <span> </span>and the measure is the reward.
+          </m.p>
 
-          <div className="w-full">
-            <RuledLine label="§ 001 — ORIGIN" sectionNumber="001" />
-          </div>
+          <m.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 1.5 }}
+            className="font-body"
+            style={{
+              fontSize: "15px",
+              color: "var(--paper-ghost)",
+              lineHeight: 1.8,
+              marginTop: "28px",
+              maxWidth: "520px",
+              fontStyle: "italic",
+            }}
+          >
+            An instrument for the modern performer — scoring pitch, timing, and
+            expression with the precision of a master&rsquo;s ear.
+          </m.p>
+
+          <m.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.7 }}
+            className="flex items-center justify-center flex-wrap gap-8"
+            style={{ marginTop: "48px" }}
+          >
+            <Link
+              href="#waitlist"
+              data-cursor
+              className="group inline-flex items-center font-body smallcaps"
+              style={{
+                fontSize: "12px",
+                letterSpacing: "0.42em",
+                padding: "16px 38px",
+                color: "var(--ink)",
+                background: "var(--gold)",
+                border: "1px solid var(--gold)",
+                transition: "all 200ms ease",
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.background = "transparent";
+                el.style.color = "var(--gold)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.background = "var(--gold)";
+                el.style.color = "var(--ink)";
+              }}
+            >
+              Enter the Hall
+            </Link>
+
+            <Link
+              href="#manifesto"
+              data-cursor
+              className="inline-flex items-center font-serif italic"
+              style={{
+                fontSize: "16px",
+                color: "var(--paper-dim)",
+                letterSpacing: "0.04em",
+                transition: "color 200ms ease",
+                paddingBottom: "2px",
+                borderBottom: "1px solid var(--gold-deep)",
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.color = "var(--gold)";
+                el.style.borderBottomColor = "var(--gold)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.color = "var(--paper-dim)";
+                el.style.borderBottomColor = "var(--gold-deep)";
+              }}
+            >
+              Read the Manifesto
+            </Link>
+          </m.div>
+
+          <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 2 }}
+            className="absolute left-0 right-0"
+            style={{ bottom: "40px", padding: "0 5vw" }}
+          >
+            <Ornament variant="diamond" label="Opus I — Overture" />
+          </m.div>
         </div>
       </LazyMotion>
+
+      <RuledLine variant="double" />
     </section>
   );
 }

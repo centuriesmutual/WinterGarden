@@ -2,129 +2,176 @@
 
 import { useState } from "react";
 import { LazyMotion, domAnimation, m } from "framer-motion";
+import Ornament from "@/components/ui/Ornament";
 import RuledLine from "@/components/ui/RuledLine";
 
-type Panel = {
-  index: string;
+type Tenet = {
+  numeral: string;
   title: string;
+  subtitle: string;
   body: string;
 };
 
-const PANELS: Panel[] = [
+const TENETS: Tenet[] = [
   {
-    index: "§ 01",
-    title: "TOKENS",
-    body: "Earn WGT on every verified performance improvement. Rewards scale with score delta — not raw score. Only progress is rewarded. Grinding yields nothing.",
+    numeral: "I",
+    title: "Tokens",
+    subtitle: "Of Progress Earned",
+    body: "WGT is awarded on every verified improvement. Rewards scale with the delta in your score — not its raw value. Only progress is honoured. Mere repetition yields nothing.",
   },
   {
-    index: "§ 02",
-    title: "REPUTATION",
-    body: "A non-transferable on-chain record of verified performances. Your musical CV. Show it to conservatories, labels, collaborators. It cannot be bought.",
+    numeral: "II",
+    title: "Reputation",
+    subtitle: "A Permanent Record",
+    body: "A non-transferable, on-chain account of every verified performance. Your musical character, in perpetuity. Show it to conservatories, labels, collaborators. It cannot be purchased.",
   },
   {
-    index: "§ 03",
-    title: "COMPETE",
-    body: "Ranked global events. Staking pools. Winner-take-most prize structures settled in USDC via Circle. Your ability, wagered against the world.",
+    numeral: "III",
+    title: "Competition",
+    subtitle: "Of Artist Against Artist",
+    body: "Ranked concerti. Staked pools. Winner-take-most prize structures, settled in USDC via Circle. Your ability, calmly and publicly wagered against the ability of the world.",
   },
 ];
 
-function ConstructivistTexture() {
+function OrnateFrame({ hover }: { hover: boolean }) {
   return (
     <>
-      {[0, 1, 2, 3].map((i) => (
+      <span
+        aria-hidden
+        className="pointer-events-none transition-colors"
+        style={{
+          position: "absolute",
+          inset: "18px",
+          border: "1px solid var(--gold-ghost)",
+          opacity: hover ? 1 : 0.5,
+          transition: "opacity 300ms ease, border-color 300ms ease",
+          borderColor: hover ? "var(--gold-deep)" : "var(--gold-ghost)",
+        }}
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none"
+        style={{
+          position: "absolute",
+          inset: "28px",
+          border: "1px solid transparent",
+          borderColor: hover ? "var(--gold-ghost)" : "transparent",
+          transition: "border-color 300ms ease",
+        }}
+      />
+      {(
+        [
+          { pos: { top: "14px", left: "14px" }, r: 0 },
+          { pos: { top: "14px", right: "14px" }, r: 90 },
+          { pos: { bottom: "14px", right: "14px" }, r: 180 },
+          { pos: { bottom: "14px", left: "14px" }, r: 270 },
+        ] as const
+      ).map((c, i) => (
         <span
           key={i}
           aria-hidden
           className="pointer-events-none"
           style={{
             position: "absolute",
-            left: `${-30 + i * 14}%`,
-            top: `${-30 + i * 14}%`,
-            width: `${200 - i * 28}%`,
-            height: `${200 - i * 28}%`,
-            border: "1px solid var(--teal-ghost)",
+            ...c.pos,
+            width: "14px",
+            height: "14px",
+            transform: `rotate(${c.r}deg)`,
+            borderTop: "1px solid var(--gold)",
+            borderLeft: "1px solid var(--gold)",
+            opacity: hover ? 1 : 0.6,
+            transition: "opacity 300ms ease",
           }}
         />
       ))}
-      <span
-        aria-hidden
-        className="pointer-events-none"
-        style={{
-          position: "absolute",
-          right: "-40%",
-          bottom: "-40%",
-          width: "120%",
-          height: "120%",
-          border: "1px solid var(--teal-ghost)",
-          transform: "rotate(45deg)",
-        }}
-      />
     </>
   );
 }
 
-function Panel({ panel, index }: { panel: Panel; index: number }) {
+function TenetPanel({ tenet, index }: { tenet: Tenet; index: number }) {
   const [hover, setHover] = useState(false);
 
   return (
-    <m.div
-      initial={{ opacity: 0, y: 20 }}
+    <m.article
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, delay: index * 0.12 }}
+      transition={{ duration: 0.7, delay: index * 0.12 }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       data-cursor
-      className="relative overflow-hidden"
+      className="relative overflow-hidden text-center"
       style={{
-        background: "var(--black)",
-        borderRight:
-          index < PANELS.length - 1 ? "1px solid var(--border)" : "none",
-        borderLeft: hover ? "1px solid var(--tiffany)" : "1px solid transparent",
-        padding: "48px 40px",
-        minHeight: "360px",
-        transition: "border-left-color 200ms ease",
+        background: hover ? "var(--deep)" : "var(--surface)",
+        padding: "72px 44px 84px",
+        minHeight: "480px",
+        transition: "background 300ms ease",
       }}
     >
-      {hover && <ConstructivistTexture />}
+      <OrnateFrame hover={hover} />
 
-      <div
-        className="relative font-mono"
-        style={{
-          fontSize: "10px",
-          color: "var(--tiffany)",
-          letterSpacing: "0.3em",
-        }}
-      >
-        {panel.index}
+      <div className="relative">
+        <div
+          className="font-display italic"
+          style={{
+            fontSize: "28px",
+            color: "var(--gold)",
+            letterSpacing: "0.1em",
+            fontWeight: 500,
+          }}
+        >
+          {tenet.numeral}
+        </div>
+
+        <div
+          aria-hidden
+          style={{
+            width: "40px",
+            height: "1px",
+            background: "var(--gold)",
+            margin: "18px auto 24px",
+          }}
+        />
+
+        <h3
+          className="font-display italic"
+          style={{
+            fontSize: "44px",
+            lineHeight: 1,
+            color: "var(--paper)",
+            letterSpacing: "-0.005em",
+            fontWeight: 500,
+          }}
+        >
+          {tenet.title}
+        </h3>
+
+        <div
+          className="font-body smallcaps"
+          style={{
+            fontSize: "10px",
+            color: "var(--gold-dim)",
+            letterSpacing: "0.48em",
+            marginTop: "14px",
+          }}
+        >
+          {tenet.subtitle}
+        </div>
+
+        <p
+          className="font-body mx-auto"
+          style={{
+            fontSize: "15px",
+            lineHeight: 1.85,
+            color: "var(--paper-dim)",
+            maxWidth: "32ch",
+            marginTop: "32px",
+          }}
+        >
+          {tenet.body}
+        </p>
       </div>
-
-      <h3
-        className="relative font-display"
-        style={{
-          fontSize: "44px",
-          lineHeight: 1,
-          letterSpacing: "0.02em",
-          color: hover ? "var(--tiffany)" : "var(--white)",
-          marginTop: "24px",
-          transition: "color 200ms ease",
-        }}
-      >
-        {panel.title}
-      </h3>
-
-      <p
-        className="relative font-mono max-w-[34ch]"
-        style={{
-          fontSize: "13px",
-          lineHeight: 1.8,
-          color: "var(--white-dim)",
-          marginTop: "20px",
-        }}
-      >
-        {panel.body}
-      </p>
-    </m.div>
+    </m.article>
   );
 }
 
@@ -133,17 +180,41 @@ export default function Incentives() {
     <section
       id="incentives"
       className="relative w-full"
-      style={{ background: "var(--black)" }}
+      style={{ background: "var(--ink)" }}
     >
       <LazyMotion features={domAnimation}>
-        <div className="w-full grid grid-cols-1 md:grid-cols-3">
-          {PANELS.map((panel, idx) => (
-            <Panel key={panel.title} panel={panel} index={idx} />
+        <div className="w-full px-6 md:px-10 pt-24 md:pt-32 pb-12 text-center">
+          <Ornament variant="diamond" label="The Three Tenets" />
+          <h2
+            className="font-display italic"
+            style={{
+              fontSize: "clamp(36px, 5vw, 60px)",
+              lineHeight: 1.05,
+              color: "var(--paper)",
+              marginTop: "28px",
+              fontWeight: 500,
+            }}
+          >
+            What you earn, beyond the music.
+          </h2>
+        </div>
+
+        <div
+          className="w-full grid grid-cols-1 md:grid-cols-3"
+          style={{
+            borderTop: "1px solid var(--gold-ghost)",
+            borderBottom: "1px solid var(--gold-ghost)",
+            gap: "1px",
+            background: "var(--gold-ghost)",
+          }}
+        >
+          {TENETS.map((tenet, idx) => (
+            <TenetPanel key={tenet.title} tenet={tenet} index={idx} />
           ))}
         </div>
       </LazyMotion>
 
-      <RuledLine label="§ 006 — ACCESS" sectionNumber="006" />
+      <RuledLine label="Finale — The Invitation" sectionNumber="VI" />
     </section>
   );
 }
