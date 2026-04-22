@@ -66,10 +66,10 @@ export default function Hero() {
             transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
             className="text-center w-full"
             style={{
-              fontSize: "clamp(56px, 11vw, 160px)",
-              lineHeight: 0.96,
+              fontSize: "clamp(36px, 7.5vw, 100px)",
+              lineHeight: 0.98,
               color: "var(--paper)",
-              letterSpacing: "-0.045em",
+              letterSpacing: "-0.04em",
               fontWeight: 700,
               maxWidth: "20ch",
               margin: "0 auto 0",
@@ -92,20 +92,20 @@ export default function Hero() {
           </m.h1>
 
           <div
-            className="w-full max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
-            style={{ marginTop: "40px" }}
+            className="w-full max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center"
+            style={{ marginTop: "24px" }}
           >
             <div className="flex flex-col text-left w-full min-w-0 order-1">
               <m.div
                 initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.35 }}
-                className="inline-flex self-start items-center gap-2.5 w-fit"
+                className="inline-flex self-start items-center gap-2 w-fit"
                 style={{
-                  padding: "6px 14px",
-                  fontSize: "11px",
+                  padding: "5px 12px",
+                  fontSize: "10px",
                   fontWeight: 500,
-                  letterSpacing: "0.14em",
+                  letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   color: g.f,
                   background: g.a,
@@ -133,11 +133,12 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.55 }}
                 style={{
-                  fontSize: "clamp(16px, 1.4vw, 19px)",
+                  fontSize: "clamp(14px, 1.2vw, 16px)",
                   color: "var(--paper-dim)",
-                  marginTop: "24px",
-                  lineHeight: 1.6,
+                  marginTop: "16px",
+                  lineHeight: 1.55,
                   fontWeight: 400,
+                  maxWidth: "42ch",
                 }}
               >
                 A performance intelligence platform that scores your playing
@@ -149,15 +150,15 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.75 }}
-                className="flex items-center flex-wrap gap-4"
-                style={{ marginTop: "32px" }}
+                className="flex items-center flex-wrap gap-3"
+                style={{ marginTop: "22px" }}
               >
                 <Link
                   href="#waitlist"
                   className="inline-flex items-center justify-center font-medium transition-colors"
                   style={{
-                    padding: "14px 28px",
-                    fontSize: "15px",
+                    padding: "10px 22px",
+                    fontSize: "13px",
                     borderRadius: "9999px",
                     color: "#e8e8e8",
                     background: g.b,
@@ -177,14 +178,14 @@ export default function Hero() {
                   }}
                 >
                   Enter the Hall
-                  <span style={{ marginLeft: "10px", fontSize: "15px" }}>→</span>
+                  <span style={{ marginLeft: "8px", fontSize: "13px" }}>→</span>
                 </Link>
                 <Link
                   href="#manifesto"
                   className="inline-flex items-center justify-center font-medium transition-colors"
                   style={{
-                    padding: "14px 28px",
-                    fontSize: "15px",
+                    padding: "10px 22px",
+                    fontSize: "13px",
                     borderRadius: "9999px",
                     color: g.f,
                     background: "transparent",
@@ -215,23 +216,23 @@ export default function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.5 }}
-              className="w-full min-h-[320px] flex flex-col order-2 lg:order-2"
+              className="w-full min-h-[240px] flex flex-col order-2 lg:order-2"
               style={{
                 aspectRatio: "16 / 10",
-                minHeight: "320px",
-                borderRadius: "16px",
+                minHeight: "240px",
+                borderRadius: "12px",
                 background: "#1e1e1e",
                 border: "1px dashed #333333",
                 boxShadow:
-                  "0 0 0 1px rgba(255,255,255,0.04), 0 24px 48px -24px rgba(0,0,0,0.5)",
+                  "0 0 0 1px rgba(255,255,255,0.04), 0 20px 40px -20px rgba(0,0,0,0.5)",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "24px",
+                padding: "20px",
               }}
             >
               <ImageIcon
                 className="shrink-0"
-                size={32}
+                size={26}
                 strokeWidth={1.25}
                 style={{ color: g.e }}
                 aria-hidden
@@ -240,9 +241,9 @@ export default function Hero() {
                 className="text-center"
                 style={{
                   color: g.d,
-                  fontSize: "14px",
+                  fontSize: "12px",
                   fontWeight: 500,
-                  marginTop: "12px",
+                  marginTop: "8px",
                 }}
               >
                 Visual coming soon
