@@ -79,13 +79,13 @@ export default function StatBlock({ value, label, animate = false }: Props) {
   return (
     <div ref={ref} className="flex flex-col items-start">
       <span
-        className="font-display"
         style={{
-          fontSize: "clamp(44px, 5.2vw, 72px)",
+          fontSize: "clamp(40px, 4.6vw, 64px)",
           lineHeight: 1,
-          letterSpacing: "-0.005em",
+          letterSpacing: "-0.03em",
           color: "var(--paper)",
-          fontWeight: 500,
+          fontWeight: 600,
+          fontVariantNumeric: "tabular-nums",
         }}
       >
         {display}
@@ -94,17 +94,18 @@ export default function StatBlock({ value, label, animate = false }: Props) {
         aria-hidden
         style={{
           marginTop: "14px",
-          width: "36px",
-          height: "1px",
+          width: "32px",
+          height: "2px",
+          borderRadius: "9999px",
           background: "var(--gold)",
         }}
       />
       <span
-        className="font-body smallcaps"
+        className="smallcaps"
         style={{
           color: "var(--paper-ghost)",
-          fontSize: "10px",
-          letterSpacing: "0.38em",
+          fontSize: "11px",
+          fontWeight: 500,
           marginTop: "12px",
         }}
       >

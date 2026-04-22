@@ -11,20 +11,10 @@ export default function RuledLine({
 }: Props) {
   if (variant === "double") {
     return (
-      <div aria-hidden className="w-full" style={{ padding: "0" }}>
-        <div
-          style={{
-            height: "1px",
-            background: "var(--gold-deep)",
-          }}
-        />
+      <div aria-hidden className="w-full">
+        <div style={{ height: "1px", background: "var(--gold-deep)" }} />
         <div style={{ height: "3px" }} />
-        <div
-          style={{
-            height: "1px",
-            background: "var(--gold-deep)",
-          }}
-        />
+        <div style={{ height: "1px", background: "var(--gold-deep)" }} />
       </div>
     );
   }
@@ -34,10 +24,7 @@ export default function RuledLine({
       <div
         aria-hidden
         className="w-full"
-        style={{
-          height: "1px",
-          background: "var(--border-lit)",
-        }}
+        style={{ height: "1px", background: "var(--border-lit)" }}
       />
     );
   }
@@ -58,11 +45,11 @@ export default function RuledLine({
       />
       {label ? (
         <span
-          className="font-body smallcaps"
+          className="smallcaps"
           style={{
             padding: "0 22px",
             fontSize: "11px",
-            letterSpacing: "0.45em",
+            fontWeight: 500,
             color: "var(--gold-dim)",
             whiteSpace: "nowrap",
           }}
@@ -71,11 +58,10 @@ export default function RuledLine({
         </span>
       ) : (
         <span
-          className="font-serif"
           style={{
             padding: "0 18px",
             color: "var(--gold)",
-            fontSize: "14px",
+            fontSize: "13px",
           }}
         >
           ◆
@@ -91,12 +77,12 @@ export default function RuledLine({
       />
       {sectionNumber ? (
         <span
-          className="font-serif italic"
           style={{
             paddingLeft: "16px",
             color: "var(--paper-ghost)",
-            fontSize: "13px",
-            letterSpacing: "0.1em",
+            fontSize: "12px",
+            fontWeight: 500,
+            letterSpacing: "0.08em",
           }}
         >
           {sectionNumber}

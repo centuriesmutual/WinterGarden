@@ -26,18 +26,31 @@ module.exports = {
       "gold-deep": "#3E331B",
       "gold-ghost": "#1F1A0F",
     },
-    borderRadius: {
-      none: "0",
-      DEFAULT: "0",
-    },
     fontFamily: {
-      display: ["var(--font-playfair)", "serif"],
-      serif: ["var(--font-cormorant)", "serif"],
-      body: ["var(--font-garamond)", "serif"],
+      sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
+      display: [
+        "var(--font-inter)",
+        "ui-sans-serif",
+        "system-ui",
+        "sans-serif",
+      ],
+      serif: ["var(--font-inter)", "ui-sans-serif", "sans-serif"],
+      body: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
     },
     extend: {
       borderColor: {
         DEFAULT: "#2A2118",
+      },
+      borderRadius: {
+        none: "0",
+        sm: "6px",
+        DEFAULT: "10px",
+        md: "12px",
+        lg: "16px",
+        xl: "20px",
+        "2xl": "24px",
+        "3xl": "32px",
+        full: "9999px",
       },
       keyframes: {
         grain: {
@@ -52,20 +65,10 @@ module.exports = {
           "0%, 100%": { transform: "scale(1)", opacity: "1" },
           "50%": { transform: "scale(1.6)", opacity: "0.55" },
         },
-        "slow-pulse": {
-          "0%, 100%": { opacity: "0.45" },
-          "50%": { opacity: "1" },
-        },
-        candle: {
-          "0%, 100%": { opacity: "0.9", transform: "scaleY(1)" },
-          "50%": { opacity: "1", transform: "scaleY(1.02)" },
-        },
       },
       animation: {
         grain: "grain 0.3s infinite",
         "pulse-dot": "pulse-dot 2.4s ease-in-out infinite",
-        "slow-pulse": "slow-pulse 3s ease-in-out infinite",
-        candle: "candle 4s ease-in-out infinite",
       },
     },
   },

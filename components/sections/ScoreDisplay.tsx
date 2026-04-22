@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Ornament from "@/components/ui/Ornament";
 import RuledLine from "@/components/ui/RuledLine";
 
-type Metric = { label: string; value: number; unit?: string };
+type Metric = { label: string; value: number };
 
 const METRICS: Metric[] = [
   { label: "Intonation", value: 93.2 },
@@ -59,30 +59,34 @@ function MetricRow({
     <div
       className="w-full"
       style={{
-        padding: "24px 0",
+        padding: "22px 0",
         borderTop: "1px solid var(--gold-ghost)",
       }}
     >
       <div
         className="grid items-baseline"
         style={{
-          gridTemplateColumns: "minmax(180px, 1.2fr) 1fr auto",
-          gap: "28px",
+          gridTemplateColumns: "minmax(160px, 1fr) 1.4fr auto",
+          gap: "24px",
         }}
       >
         <span
-          className="font-serif italic"
           style={{
-            fontSize: "17px",
+            fontSize: "15px",
             color: "var(--paper-dim)",
-            letterSpacing: "0.02em",
+            fontWeight: 500,
           }}
         >
           {metric.label}
         </span>
         <div
           className="relative w-full"
-          style={{ height: "2px", background: "var(--gold-ghost)" }}
+          style={{
+            height: "6px",
+            background: "var(--gold-ghost)",
+            borderRadius: "9999px",
+            overflow: "hidden",
+          }}
         >
           <div
             style={{
@@ -91,20 +95,23 @@ function MetricRow({
               left: 0,
               height: "100%",
               width: `${fill}%`,
-              background: "var(--gold)",
+              background:
+                "linear-gradient(90deg, var(--gold-dim), var(--gold) 70%, #E2C47E)",
+              borderRadius: "9999px",
               transition: "width 1100ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+              boxShadow: "0 0 12px -2px rgba(201,169,97,0.4)",
             }}
           />
         </div>
         <span
-          className="font-display"
           style={{
-            fontSize: "22px",
+            fontSize: "20px",
             color: "var(--paper)",
-            letterSpacing: "-0.005em",
-            minWidth: "64px",
+            letterSpacing: "-0.02em",
+            minWidth: "60px",
             textAlign: "right",
-            fontWeight: 500,
+            fontWeight: 600,
+            fontVariantNumeric: "tabular-nums",
           }}
         >
           {display.toFixed(1)}
@@ -146,173 +153,169 @@ export default function ScoreDisplay() {
       }}
     >
       <LazyMotion features={domAnimation}>
-        <div className="w-full px-6 md:px-10 py-24 md:py-36">
-          <div className="max-w-[960px] mx-auto">
-            <div className="text-center">
-              <Ornament variant="double" label="Programme of Record" />
-            </div>
+        <div className="w-full max-w-[1040px] mx-auto px-5 md:px-10 py-24 md:py-36">
+          <div className="text-center">
+            <Ornament variant="double" label="Programme of Record" />
+          </div>
 
-            <div
-              className="relative mx-auto"
-              style={{
-                marginTop: "56px",
-                padding: "72px 48px",
-                border: "1px solid var(--gold-deep)",
-                background:
-                  "linear-gradient(180deg, rgba(18,14,9,0.6), rgba(7,5,3,0.9))",
-              }}
-            >
-              <span
-                aria-hidden
-                className="absolute"
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="card relative mx-auto"
+            style={{
+              marginTop: "48px",
+              padding: "56px 32px",
+              borderRadius: "var(--radius-3xl)",
+            }}
+          >
+            <div className="relative text-center">
+              <div
+                className="inline-flex flex-wrap items-center justify-center smallcaps"
                 style={{
-                  inset: "8px",
+                  fontSize: "10.5px",
+                  color: "var(--gold)",
+                  fontWeight: 500,
+                  gap: "14px",
+                  padding: "6px 16px",
                   border: "1px solid var(--gold-ghost)",
-                  pointerEvents: "none",
+                  borderRadius: "9999px",
+                  background: "rgba(201,169,97,0.05)",
                 }}
-              />
-
-              <div className="relative text-center">
-                <div
-                  className="font-body smallcaps flex flex-wrap items-center justify-center"
-                  style={{
-                    fontSize: "10px",
-                    color: "var(--gold)",
-                    letterSpacing: "0.48em",
-                    gap: "14px",
-                  }}
-                >
-                  <span>Session No. 00847</span>
-                  <span style={{ color: "var(--paper-shadow)" }}>◆</span>
-                  <span>Pianoforte</span>
-                  <span style={{ color: "var(--paper-shadow)" }}>◆</span>
-                  <span className="inline-flex items-center gap-2">
-                    <span
-                      aria-hidden
-                      style={{
-                        display: "inline-block",
-                        width: "6px",
-                        height: "6px",
-                        background: "var(--gold)",
-                        animation: "pulse-dot 2.4s ease-in-out infinite",
-                      }}
-                    />
-                    In Session
-                  </span>
-                </div>
-
-                <m.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.9, delay: 0.1 }}
-                  style={{ marginTop: "40px", marginBottom: "28px" }}
-                >
-                  <div
-                    className="font-serif italic"
-                    style={{
-                      fontSize: "13px",
-                      color: "var(--paper-ghost)",
-                      letterSpacing: "0.3em",
-                      marginBottom: "8px",
-                    }}
-                  >
-                    — A performance of —
-                  </div>
-                  <div
-                    className="font-display italic"
-                    style={{
-                      fontSize: "22px",
-                      color: "var(--paper-dim)",
-                      marginBottom: "24px",
-                    }}
-                  >
-                    Chopin · Nocturne in C♯ Minor
-                  </div>
-
-                  <div
-                    className="font-display"
-                    style={{
-                      fontSize: "clamp(110px, 16vw, 176px)",
-                      lineHeight: 1,
-                      color: "var(--paper)",
-                      letterSpacing: "-0.01em",
-                      fontWeight: 500,
-                    }}
-                  >
-                    {score.toFixed(1)}
-                  </div>
-                  <div
-                    className="font-body smallcaps"
-                    style={{
-                      fontSize: "11px",
-                      color: "var(--gold)",
-                      letterSpacing: "0.55em",
-                      marginTop: "6px",
-                    }}
-                  >
-                    Wintergarden Score
-                  </div>
-                </m.div>
-
-                <div
+              >
+                <span
                   aria-hidden
-                  className="mx-auto"
                   style={{
-                    width: "80px",
-                    height: "1px",
+                    display: "inline-block",
+                    width: "6px",
+                    height: "6px",
+                    borderRadius: "9999px",
                     background: "var(--gold)",
-                    margin: "24px auto 40px",
+                    animation: "pulse-dot 2.4s ease-in-out infinite",
                   }}
                 />
-              </div>
-
-              <div className="relative w-full">
-                {METRICS.map((metric, idx) => (
-                  <MetricRow
-                    key={metric.label}
-                    metric={metric}
-                    index={idx}
-                    inView={inView}
-                  />
-                ))}
-                <div style={{ borderTop: "1px solid var(--gold-ghost)" }} />
+                Session 00847 · Pianoforte · In Session
               </div>
 
               <div
-                className="relative font-serif italic flex flex-wrap items-center justify-center"
                 style={{
-                  marginTop: "40px",
+                  marginTop: "32px",
                   fontSize: "13px",
                   color: "var(--paper-ghost)",
-                  gap: "16px",
-                  letterSpacing: "0.04em",
+                  fontWeight: 500,
                 }}
               >
-                <span>
-                  Global Rank{" "}
-                  <span style={{ color: "var(--paper)" }}>№ 1,847</span> of
-                  94,210
-                </span>
-                <span style={{ color: "var(--paper-shadow)" }}>◆</span>
-                <span>
-                  Percentile{" "}
-                  <span style={{ color: "var(--paper)" }}>98th</span>
-                </span>
-                <span style={{ color: "var(--paper-shadow)" }}>◆</span>
-                <span
-                  className="font-body smallcaps"
+                A performance of
+              </div>
+              <div
+                style={{
+                  fontSize: "22px",
+                  color: "var(--paper-dim)",
+                  marginTop: "4px",
+                  fontStyle: "italic",
+                  fontWeight: 500,
+                  letterSpacing: "-0.015em",
+                }}
+              >
+                Chopin · Nocturne in C♯ Minor
+              </div>
+
+              <m.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.9, delay: 0.15 }}
+                style={{ marginTop: "28px", marginBottom: "12px" }}
+              >
+                <div
                   style={{
-                    fontSize: "10px",
-                    letterSpacing: "0.45em",
-                    color: "var(--gold-dim)",
+                    fontSize: "clamp(96px, 15vw, 160px)",
+                    lineHeight: 1,
+                    color: "var(--paper)",
+                    letterSpacing: "-0.05em",
+                    fontWeight: 700,
+                    fontVariantNumeric: "tabular-nums",
+                    backgroundImage:
+                      "linear-gradient(180deg, var(--paper) 0%, #CFC4A8 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
                   }}
                 >
-                  Verified on Avalanche
+                  {score.toFixed(1)}
+                </div>
+                <div
+                  className="smallcaps"
+                  style={{
+                    fontSize: "11px",
+                    color: "var(--gold)",
+                    fontWeight: 500,
+                    marginTop: "4px",
+                  }}
+                >
+                  Wintergarden Score
+                </div>
+              </m.div>
+
+              <div
+                aria-hidden
+                className="mx-auto"
+                style={{
+                  width: "64px",
+                  height: "2px",
+                  borderRadius: "9999px",
+                  background: "var(--gold)",
+                  margin: "28px auto 36px",
+                }}
+              />
+            </div>
+
+            <div className="relative w-full">
+              {METRICS.map((metric, idx) => (
+                <MetricRow
+                  key={metric.label}
+                  metric={metric}
+                  index={idx}
+                  inView={inView}
+                />
+              ))}
+              <div style={{ borderTop: "1px solid var(--gold-ghost)" }} />
+            </div>
+
+            <div
+              className="relative flex flex-wrap items-center justify-center gap-4"
+              style={{ marginTop: "36px" }}
+            >
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: "var(--paper-ghost)",
+                }}
+              >
+                Global rank{" "}
+                <span style={{ color: "var(--paper)", fontWeight: 600 }}>
+                  #1,847
+                </span>{" "}
+                of 94,210
+              </div>
+              <span style={{ color: "var(--gold-deep)" }}>·</span>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: "var(--paper-ghost)",
+                }}
+              >
+                Percentile{" "}
+                <span style={{ color: "var(--paper)", fontWeight: 600 }}>
+                  98th
                 </span>
               </div>
+              <span style={{ color: "var(--gold-deep)" }}>·</span>
+              <span className="tag" style={{ fontSize: "10px" }}>
+                Verified on Avalanche
+              </span>
             </div>
-          </div>
+          </m.div>
         </div>
       </LazyMotion>
 

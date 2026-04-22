@@ -14,35 +14,30 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50"
       style={{
         background:
-          "linear-gradient(to bottom, rgba(7,5,3,0.94) 0%, rgba(7,5,3,0.88) 80%, rgba(7,5,3,0) 100%)",
+          "linear-gradient(to bottom, rgba(7,5,3,0.88) 0%, rgba(7,5,3,0.72) 80%, rgba(7,5,3,0) 100%)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
         height: "72px",
       }}
     >
-      <nav
-        className="h-[64px] w-full flex items-center justify-between px-6 md:px-12"
-        style={{ borderBottom: "1px solid var(--gold-ghost)" }}
-      >
-        <Link
-          href="#top"
-          className="font-display flex flex-col leading-none"
-          data-cursor
-        >
+      <nav className="h-full w-full max-w-[1400px] mx-auto flex items-center justify-between px-6 md:px-10">
+        <Link href="#top" className="flex items-center gap-3">
           <span
-            className="smallcaps"
+            aria-hidden
             style={{
-              fontSize: "9px",
-              color: "var(--gold-dim)",
-              letterSpacing: "0.5em",
-              marginBottom: "4px",
+              width: "28px",
+              height: "28px",
+              borderRadius: "9999px",
+              background:
+                "radial-gradient(circle at 30% 30%, #E2C47E, var(--gold) 55%, var(--gold-deep))",
+              boxShadow: "0 0 0 1px var(--gold-deep), 0 6px 18px -6px rgba(201,169,97,0.5)",
             }}
-          >
-            Est. MMXXV
-          </span>
+          />
           <span
-            className="font-display italic"
             style={{
-              fontSize: "22px",
-              letterSpacing: "0.04em",
+              fontSize: "17px",
+              fontWeight: 600,
+              letterSpacing: "-0.02em",
               color: "var(--paper)",
             }}
           >
@@ -50,27 +45,32 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-6 md:gap-10">
-          <ul className="hidden sm:flex items-center gap-8">
+        <div className="flex items-center gap-3 md:gap-6">
+          <ul className="hidden sm:flex items-center gap-1">
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  data-cursor
-                  className="font-serif italic"
+                  className="transition-colors"
                   style={{
-                    fontSize: "15px",
-                    letterSpacing: "0.04em",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    letterSpacing: "-0.005em",
                     color: "var(--paper-dim)",
-                    transition: "color 200ms ease",
+                    padding: "8px 14px",
+                    borderRadius: "9999px",
+                    display: "inline-flex",
+                    transition: "color 180ms ease, background 180ms ease",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.color =
-                      "var(--gold)";
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.color = "var(--paper)";
+                    el.style.background = "rgba(201, 169, 97, 0.06)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.color =
-                      "var(--paper-dim)";
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.color = "var(--paper-dim)";
+                    el.style.background = "transparent";
                   }}
                 >
                   {link.label}
@@ -81,29 +81,8 @@ export default function Navbar() {
 
           <Link
             href="#waitlist"
-            data-cursor
-            className="group inline-flex items-center font-body smallcaps"
-            style={{
-              fontSize: "11px",
-              letterSpacing: "0.4em",
-              padding: "10px 22px",
-              color: "var(--gold)",
-              border: "1px solid var(--gold-deep)",
-              background: "transparent",
-              transition: "all 200ms ease",
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.background = "var(--gold)";
-              el.style.color = "var(--ink)";
-              el.style.borderColor = "var(--gold)";
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.background = "transparent";
-              el.style.color = "var(--gold)";
-              el.style.borderColor = "var(--gold-deep)";
-            }}
+            className="btn-primary"
+            style={{ padding: "10px 20px", fontSize: "13px" }}
           >
             Request Access
           </Link>

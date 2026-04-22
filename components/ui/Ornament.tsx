@@ -25,10 +25,9 @@ export default function Ornament({
       aria-hidden
     >
       <span
-        className="font-serif"
         style={{
           color: "var(--gold)",
-          fontSize: variant === "double" ? "10px" : "14px",
+          fontSize: variant === "double" ? "10px" : "13px",
           letterSpacing: variant === "double" ? "0.6em" : "0",
         }}
       >
@@ -36,11 +35,11 @@ export default function Ornament({
       </span>
       {label ? (
         <span
-          className="font-body smallcaps"
+          className="smallcaps"
           style={{
             color: "var(--gold-dim)",
             fontSize: "11px",
-            letterSpacing: "0.45em",
+            fontWeight: 500,
             whiteSpace: "nowrap",
           }}
         >
@@ -48,10 +47,9 @@ export default function Ornament({
         </span>
       ) : null}
       <span
-        className="font-serif"
         style={{
           color: "var(--gold)",
-          fontSize: variant === "double" ? "10px" : "14px",
+          fontSize: variant === "double" ? "10px" : "13px",
           letterSpacing: variant === "double" ? "0.6em" : "0",
         }}
       >

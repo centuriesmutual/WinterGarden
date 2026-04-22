@@ -19,31 +19,25 @@ const MOVEMENTS: Movement[] = [
     movement: "Primo",
     tempo: "Allegro",
     title: "Perform",
-    body: "You play. Wintergarden listens as a master listens, through real-time spectral analysis of every pitch, every onset, every nuance of dynamics — captured to the millisecond, honoured to the cent.",
+    body: "You play. Wintergarden listens as a master listens — real-time spectral analysis of every pitch, every onset, every nuance of dynamics, captured to the millisecond.",
   },
   {
     numeral: "II",
     movement: "Secondo",
     tempo: "Andante",
     title: "Analyse",
-    body: "A multi-dimensional Wintergarden Score is composed from your performance: accuracy of pitch, consistency of rhythm, eloquence of expression. Normalised against a corpus. Verified on-chain.",
+    body: "A multi-dimensional Wintergarden Score is composed from your performance: accuracy of pitch, consistency of rhythm, eloquence of expression. Normalised, verified, on-chain.",
   },
   {
     numeral: "III",
     movement: "Finale",
     tempo: "Con brio",
     title: "Ascend",
-    body: "Your artistry is entered into the Society. Ranked concerti. Curated pools. Rewards settled in USDC through Circle; honours inscribed on Avalanche. Your ability — wagered against the world.",
+    body: "Your artistry is entered into the Society. Ranked concerti. Curated pools. Rewards in USDC through Circle; honours inscribed on Avalanche. Ability wagered against the world.",
   },
 ];
 
-function MovementCard({
-  item,
-  index,
-}: {
-  item: Movement;
-  index: number;
-}) {
+function MovementCard({ item, index }: { item: Movement; index: number }) {
   const [hover, setHover] = useState(false);
 
   return (
@@ -51,60 +45,57 @@ function MovementCard({
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, delay: index * 0.15 }}
+      transition={{ duration: 0.7, delay: index * 0.12 }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      data-cursor
-      className="relative overflow-hidden text-center"
+      className="relative card overflow-hidden"
       style={{
-        background: hover ? "var(--deep)" : "var(--ink)",
-        borderRight:
-          index < MOVEMENTS.length - 1
-            ? "1px solid var(--gold-ghost)"
-            : "none",
-        padding: "80px 40px 88px",
-        minHeight: "520px",
-        transition: "background 300ms ease",
+        padding: "56px 36px 60px",
+        minHeight: "460px",
+        transition: "transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease",
+        transform: hover ? "translateY(-4px)" : "translateY(0)",
+        borderColor: hover ? "var(--gold-deep)" : "var(--gold-ghost)",
       }}
     >
       <span
         aria-hidden
-        className="absolute pointer-events-none select-none font-display italic"
+        className="pointer-events-none select-none absolute"
         style={{
           left: "50%",
           top: "24px",
           transform: "translateX(-50%)",
-          fontSize: "160px",
+          fontSize: "140px",
           lineHeight: 1,
           color: hover ? "var(--gold-deep)" : "var(--gold-ghost)",
-          fontWeight: 400,
+          fontWeight: 700,
+          letterSpacing: "-0.04em",
+          fontStyle: "italic",
           transition: "color 300ms ease",
         }}
       >
         {item.numeral}
       </span>
 
-      <div className="relative" style={{ paddingTop: "92px" }}>
+      <div className="relative" style={{ paddingTop: "80px" }}>
         <div
-          className="font-body smallcaps"
+          className="smallcaps"
           style={{
-            fontSize: "10px",
+            fontSize: "10.5px",
             color: "var(--gold)",
-            letterSpacing: "0.5em",
+            fontWeight: 500,
           }}
         >
           {item.movement}
         </div>
 
         <h3
-          className="font-display italic"
           style={{
-            fontSize: "44px",
-            lineHeight: 1,
-            marginTop: "16px",
+            fontSize: "36px",
+            lineHeight: 1.05,
+            marginTop: "14px",
             color: "var(--paper)",
-            letterSpacing: "-0.005em",
-            fontWeight: 500,
+            letterSpacing: "-0.03em",
+            fontWeight: 600,
           }}
         >
           {item.title}
@@ -113,20 +104,22 @@ function MovementCard({
         <div
           aria-hidden
           style={{
-            width: hover ? "80px" : "36px",
-            height: "1px",
+            width: hover ? "72px" : "32px",
+            height: "2px",
+            borderRadius: "9999px",
             background: "var(--gold)",
-            margin: "24px auto",
-            transition: "width 400ms ease",
+            margin: "20px 0 18px",
+            transition: "width 380ms ease",
           }}
         />
 
         <div
-          className="font-serif italic"
           style={{
             fontSize: "13px",
             color: "var(--gold-dim)",
-            letterSpacing: "0.12em",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            fontWeight: 500,
             marginBottom: "18px",
           }}
         >
@@ -134,12 +127,11 @@ function MovementCard({
         </div>
 
         <p
-          className="font-body mx-auto"
           style={{
             fontSize: "15px",
-            lineHeight: 1.85,
+            lineHeight: 1.75,
             color: "var(--paper-dim)",
-            maxWidth: "32ch",
+            fontWeight: 400,
           }}
         >
           {item.body}
@@ -157,24 +149,33 @@ export default function HowItWorks() {
       style={{ background: "var(--ink)" }}
     >
       <LazyMotion features={domAnimation}>
-        <div className="w-full px-6 md:px-10 pt-24 md:pt-32 pb-10 text-center">
+        <div className="w-full max-w-[1280px] mx-auto px-5 md:px-10 pt-24 md:pt-32 pb-16 text-center">
           <Ornament variant="diamond" label="The Programme" />
           <h2
-            className="font-display italic"
             style={{
-              fontSize: "clamp(40px, 5.4vw, 68px)",
+              fontSize: "clamp(36px, 5vw, 60px)",
               lineHeight: 1.05,
               color: "var(--paper)",
-              marginTop: "28px",
-              fontWeight: 500,
+              marginTop: "24px",
+              fontWeight: 600,
+              letterSpacing: "-0.035em",
             }}
           >
-            A concerto in three movements.
+            A concerto in{" "}
+            <span
+              style={{
+                fontStyle: "italic",
+                color: "var(--gold)",
+                fontWeight: 500,
+              }}
+            >
+              three movements.
+            </span>
           </h2>
           <p
-            className="font-serif italic mx-auto"
+            className="mx-auto"
             style={{
-              fontSize: "18px",
+              fontSize: "17px",
               color: "var(--paper-dim)",
               marginTop: "20px",
               maxWidth: "560px",
@@ -186,16 +187,12 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div
-          className="w-full grid grid-cols-1 md:grid-cols-3"
-          style={{
-            borderTop: "1px solid var(--gold-ghost)",
-            borderBottom: "1px solid var(--gold-ghost)",
-          }}
-        >
-          {MOVEMENTS.map((item, idx) => (
-            <MovementCard key={item.title} item={item} index={idx} />
-          ))}
+        <div className="w-full max-w-[1280px] mx-auto px-5 md:px-10 pb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {MOVEMENTS.map((item, idx) => (
+              <MovementCard key={item.title} item={item} index={idx} />
+            ))}
+          </div>
         </div>
       </LazyMotion>
 

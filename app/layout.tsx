@@ -1,36 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Playfair_Display,
-  Cormorant_Garamond,
-  EB_Garamond,
-} from "next/font/google";
+import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import GrainOverlay from "@/components/ui/GrainOverlay";
-import CustomCursor from "@/components/ui/CustomCursor";
 
-const playfair = Playfair_Display({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   style: ["normal", "italic"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
-
-const garamond = EB_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-garamond",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -58,13 +37,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${playfair.variable} ${cormorant.variable} ${garamond.variable}`}
-    >
-      <body className="bg-ink text-paper font-body antialiased">
+    <html lang="en" className={inter.variable}>
+      <body className="bg-ink text-paper font-sans antialiased">
         <GrainOverlay />
-        <CustomCursor />
         <Navbar />
         <main>{children}</main>
         <Analytics />

@@ -12,60 +12,36 @@ export default function CallToAction() {
       style={{
         minHeight: "100svh",
         background:
-          "radial-gradient(ellipse at center, rgba(201,169,97,0.07) 0%, transparent 55%), var(--ink)",
+          "radial-gradient(ellipse at center, rgba(201,169,97,0.08) 0%, transparent 55%), var(--ink)",
       }}
     >
       <LazyMotion features={domAnimation}>
-        <div className="flex-1 flex items-center justify-center w-full px-6 md:px-10 py-32">
-          <div
-            className="relative text-center w-full max-w-[860px] mx-auto"
-            style={{ padding: "80px 48px" }}
+        <div className="flex-1 flex items-center justify-center w-full px-5 md:px-10 py-32">
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="relative text-center w-full max-w-[880px] mx-auto card"
+            style={{ padding: "72px 40px", borderRadius: "var(--radius-3xl)" }}
           >
-            <span
-              aria-hidden
-              className="pointer-events-none"
-              style={{
-                position: "absolute",
-                inset: 0,
-                border: "1px solid var(--gold-deep)",
-              }}
-            />
-            <span
-              aria-hidden
-              className="pointer-events-none"
-              style={{
-                position: "absolute",
-                inset: "12px",
-                border: "1px solid var(--gold-ghost)",
-              }}
-            />
-
-            <m.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7 }}
-              className="relative"
-            >
-              <Ornament variant="fleuron" label="A Formal Invitation" />
-            </m.div>
+            <Ornament variant="fleuron" label="A Formal Invitation" />
 
             <m.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="relative font-serif italic"
               style={{
-                fontSize: "clamp(20px, 2.4vw, 28px)",
+                fontSize: "clamp(18px, 2vw, 22px)",
                 color: "var(--paper-dim)",
-                marginTop: "40px",
+                marginTop: "36px",
                 lineHeight: 1.5,
+                fontStyle: "italic",
+                fontWeight: 400,
               }}
             >
-              The hall is silent.
-              <br />
-              The instrument is tuned.
+              The hall is silent. The instrument is tuned.
             </m.p>
 
             <m.h2
@@ -73,71 +49,44 @@ export default function CallToAction() {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.9, delay: 0.25, ease: "easeOut" }}
-              className="relative font-display italic"
               style={{
-                fontSize: "clamp(56px, 11vw, 160px)",
+                fontSize: "clamp(56px, 10vw, 140px)",
                 lineHeight: 1,
                 color: "var(--paper)",
-                marginTop: "40px",
-                letterSpacing: "-0.01em",
-                fontWeight: 500,
+                marginTop: "28px",
+                letterSpacing: "-0.045em",
+                fontWeight: 700,
               }}
             >
               Your score
               <br />
-              <span style={{ color: "var(--gold)" }}>awaits.</span>
-            </m.h2>
-
-            <m.div
-              initial={{ opacity: 0, scaleX: 0 }}
-              whileInView={{ opacity: 1, scaleX: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="relative flex items-center justify-center gap-5 mx-auto"
-              style={{
-                marginTop: "56px",
-                marginBottom: "40px",
-                width: "min(420px, 80%)",
-              }}
-            >
               <span
-                aria-hidden
                 style={{
-                  flex: 1,
-                  height: "1px",
-                  background:
-                    "linear-gradient(to right, transparent, var(--gold-deep))",
+                  backgroundImage:
+                    "linear-gradient(180deg, #E8D19A 0%, var(--gold) 60%, var(--gold-dim) 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  fontStyle: "italic",
+                  fontWeight: 600,
                 }}
-              />
-              <span
-                className="font-serif"
-                style={{ color: "var(--gold)", fontSize: "16px" }}
               >
-                ◆
+                awaits.
               </span>
-              <span
-                aria-hidden
-                style={{
-                  flex: 1,
-                  height: "1px",
-                  background:
-                    "linear-gradient(to left, transparent, var(--gold-deep))",
-                }}
-              />
-            </m.div>
+            </m.h2>
 
             <m.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="relative font-serif italic"
+              transition={{ duration: 0.8, delay: 0.5 }}
               style={{
-                fontSize: "16px",
+                fontSize: "17px",
                 color: "var(--paper-ghost)",
                 lineHeight: 1.7,
-                maxWidth: "460px",
-                margin: "0 auto",
+                maxWidth: "480px",
+                margin: "40px auto 0",
+                fontWeight: 400,
               }}
             >
               Wintergarden is, at present, a conservatory by invitation. Apply
@@ -148,121 +97,98 @@ export default function CallToAction() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.75 }}
-              className="relative"
-              style={{ marginTop: "40px" }}
+              transition={{ duration: 0.8, delay: 0.65 }}
+              className="flex items-center justify-center flex-wrap gap-4"
+              style={{ marginTop: "32px" }}
             >
               <Link
                 href="#waitlist"
-                data-cursor
-                className="group inline-flex items-center font-body smallcaps"
-                style={{
-                  fontSize: "12px",
-                  letterSpacing: "0.55em",
-                  padding: "18px 56px",
-                  color: "var(--ink)",
-                  background: "var(--gold)",
-                  border: "1px solid var(--gold)",
-                  transition: "all 220ms ease",
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "transparent";
-                  el.style.color = "var(--gold)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "var(--gold)";
-                  el.style.color = "var(--ink)";
-                }}
+                className="btn-primary"
+                style={{ padding: "16px 36px", fontSize: "15px" }}
               >
                 Request Your Audition
+                <span style={{ marginLeft: "10px", fontSize: "16px" }}>→</span>
+              </Link>
+              <Link href="#manifesto" className="btn-secondary">
+                Learn More
               </Link>
             </m.div>
 
             <div
-              className="relative font-serif italic"
               style={{
-                marginTop: "40px",
+                marginTop: "28px",
                 fontSize: "13px",
                 color: "var(--paper-shadow)",
-                letterSpacing: "0.18em",
+                fontWeight: 500,
               }}
             >
               Applicants answered within seven days.
             </div>
-          </div>
+          </m.div>
         </div>
 
         <footer
           className="w-full"
           style={{
             borderTop: "1px solid var(--gold-ghost)",
-            padding: "40px 24px",
+            padding: "48px 24px",
+            background: "rgba(7,5,3,0.6)",
           }}
         >
-          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-6">
-            <div
-              className="font-display italic"
-              style={{
-                fontSize: "22px",
-                color: "var(--paper)",
-                letterSpacing: "0.02em",
-              }}
-            >
-              Wintergarden
+          <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-5">
+            <div className="flex items-center gap-3">
+              <span
+                aria-hidden
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "9999px",
+                  background:
+                    "radial-gradient(circle at 30% 30%, #E2C47E, var(--gold) 55%, var(--gold-deep))",
+                  boxShadow: "0 0 0 1px var(--gold-deep)",
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "18px",
+                  color: "var(--paper)",
+                  fontWeight: 600,
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                Wintergarden
+              </span>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <span
-                className="font-body smallcaps"
-                style={{
-                  fontSize: "10px",
-                  color: "var(--paper-ghost)",
-                  letterSpacing: "0.45em",
-                }}
-              >
-                © MMXXV
-              </span>
-              <span style={{ color: "var(--gold-deep)" }}>◆</span>
-              <span
-                className="font-body smallcaps"
-                style={{
-                  fontSize: "10px",
-                  color: "var(--paper-ghost)",
-                  letterSpacing: "0.45em",
-                }}
-              >
-                Centuries Mutual
-              </span>
-              <span style={{ color: "var(--gold-deep)" }}>◆</span>
-              <span
-                className="font-body smallcaps"
-                style={{
-                  fontSize: "10px",
-                  color: "var(--paper-ghost)",
-                  letterSpacing: "0.45em",
-                }}
-              >
-                Avalanche Network
-              </span>
-              <span style={{ color: "var(--gold-deep)" }}>◆</span>
-              <span
-                className="font-body smallcaps"
-                style={{
-                  fontSize: "10px",
-                  color: "var(--paper-ghost)",
-                  letterSpacing: "0.45em",
-                }}
-              >
-                Circle USDC
-              </span>
+              {[
+                "© MMXXV",
+                "Centuries Mutual",
+                "Avalanche Network",
+                "Circle USDC",
+              ].map((label, i, arr) => (
+                <span
+                  key={label}
+                  className="flex items-center gap-3 smallcaps"
+                  style={{
+                    fontSize: "10.5px",
+                    color: "var(--paper-ghost)",
+                    fontWeight: 500,
+                  }}
+                >
+                  {label}
+                  {i < arr.length - 1 ? (
+                    <span style={{ color: "var(--gold-deep)" }}>·</span>
+                  ) : null}
+                </span>
+              ))}
             </div>
             <div
-              className="font-serif italic text-center"
+              className="text-center"
               style={{
-                fontSize: "12px",
+                fontSize: "13px",
                 color: "var(--paper-shadow)",
-                letterSpacing: "0.04em",
+                fontStyle: "italic",
+                fontWeight: 400,
               }}
             >
               A quiet room, lit at two in the morning.

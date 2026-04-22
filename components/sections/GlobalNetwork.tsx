@@ -32,14 +32,14 @@ function DotGrid() {
   return (
     <div
       aria-hidden
-      className="absolute inset-0 font-body select-none"
+      className="absolute inset-0 select-none"
       style={{
         fontSize: "10px",
         color: "var(--gold-deep)",
-        opacity: 0.6,
+        opacity: 0.5,
         lineHeight: "12px",
         letterSpacing: "6px",
-        padding: "14px",
+        padding: "18px",
         whiteSpace: "pre-wrap",
         wordBreak: "break-all",
       }}
@@ -56,25 +56,34 @@ export default function GlobalNetwork() {
       className="relative w-full"
       style={{ background: "var(--ink)" }}
     >
-      <div className="w-full px-6 md:px-10 py-24 md:py-36">
-        <div className="text-center" style={{ marginBottom: "72px" }}>
+      <div className="w-full max-w-[1280px] mx-auto px-5 md:px-10 py-24 md:py-36">
+        <div className="text-center" style={{ marginBottom: "64px" }}>
           <Ornament variant="star" label="The Global Society" />
           <h2
-            className="font-display italic"
             style={{
               fontSize: "clamp(36px, 5vw, 60px)",
               lineHeight: 1.05,
               color: "var(--paper)",
-              marginTop: "28px",
-              fontWeight: 500,
+              marginTop: "24px",
+              fontWeight: 600,
+              letterSpacing: "-0.035em",
             }}
           >
-            A circle of measured musicians.
+            A circle of{" "}
+            <span
+              style={{
+                fontStyle: "italic",
+                color: "var(--gold)",
+                fontWeight: 500,
+              }}
+            >
+              measured musicians.
+            </span>
           </h2>
           <p
-            className="font-serif italic mx-auto"
+            className="mx-auto"
             style={{
-              fontSize: "18px",
+              fontSize: "17px",
               color: "var(--paper-dim)",
               marginTop: "20px",
               maxWidth: "560px",
@@ -86,40 +95,43 @@ export default function GlobalNetwork() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center max-w-[1280px] mx-auto">
-          <div className="grid grid-cols-2 gap-x-10 gap-y-14 lg:gap-y-16">
-            {STATS.map((stat) => (
-              <StatBlock
-                key={stat.label}
-                value={stat.value}
-                label={stat.label}
-                animate
-              />
-            ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+          <div className="card" style={{ padding: "40px 36px" }}>
+            <div className="grid grid-cols-2 gap-x-10 gap-y-12">
+              {STATS.map((stat) => (
+                <StatBlock
+                  key={stat.label}
+                  value={stat.value}
+                  label={stat.label}
+                  animate
+                />
+              ))}
+            </div>
           </div>
 
-          <div className="hidden md:flex lg:justify-end">
+          <div className="flex lg:justify-end">
             <div
-              className="relative"
+              className="card relative w-full"
               style={{
-                width: "520px",
-                maxWidth: "100%",
-                height: "300px",
-                background: "var(--deep)",
-                border: "1px solid var(--gold-ghost)",
-                padding: "10px",
+                maxWidth: "540px",
+                padding: "14px",
               }}
             >
               <div
-                className="relative w-full h-full"
-                style={{ border: "1px solid var(--gold-deep)" }}
+                className="relative w-full"
+                style={{
+                  height: "300px",
+                  borderRadius: "var(--radius-xl)",
+                  border: "1px solid var(--gold-ghost)",
+                  background: "rgba(7,5,3,0.6)",
+                  overflow: "hidden",
+                }}
               >
                 <DotGrid />
 
                 {CITIES.map((city) => (
                   <div
                     key={city.name}
-                    data-cursor
                     className="group absolute"
                     style={{
                       left: `${city.x}%`,
@@ -130,25 +142,30 @@ export default function GlobalNetwork() {
                     <div
                       aria-hidden
                       style={{
-                        width: "6px",
-                        height: "6px",
+                        width: "8px",
+                        height: "8px",
+                        borderRadius: "9999px",
                         background: "var(--gold)",
                         animation: "pulse-dot 2.4s ease-in-out infinite",
                         animationDelay: `${city.delay}s`,
-                        boxShadow: "0 0 0 1px var(--gold-deep)",
+                        boxShadow: "0 0 10px 2px rgba(201,169,97,0.35)",
                       }}
                     />
                     <span
-                      className="opacity-0 group-hover:opacity-100 font-serif italic pointer-events-none"
+                      className="opacity-0 group-hover:opacity-100 pointer-events-none"
                       style={{
                         position: "absolute",
-                        top: "-18px",
-                        left: "10px",
-                        fontSize: "10px",
+                        top: "-20px",
+                        left: "12px",
+                        fontSize: "11px",
                         color: "var(--gold)",
-                        letterSpacing: "0.08em",
+                        fontWeight: 500,
                         whiteSpace: "nowrap",
                         transition: "opacity 180ms ease",
+                        padding: "3px 8px",
+                        background: "rgba(31,26,15,0.9)",
+                        border: "1px solid var(--gold-deep)",
+                        borderRadius: "9999px",
                       }}
                     >
                       {city.name}
@@ -158,16 +175,14 @@ export default function GlobalNetwork() {
               </div>
 
               <div
-                className="font-body smallcaps"
+                className="smallcaps"
                 style={{
-                  position: "absolute",
-                  bottom: "-26px",
-                  left: 0,
-                  right: 0,
                   textAlign: "center",
-                  fontSize: "9px",
+                  fontSize: "10px",
+                  fontWeight: 500,
                   color: "var(--paper-ghost)",
-                  letterSpacing: "0.45em",
+                  marginTop: "14px",
+                  marginBottom: "4px",
                 }}
               >
                 Live · 12 representative cities
@@ -177,32 +192,18 @@ export default function GlobalNetwork() {
         </div>
 
         <div
-          className="max-w-[760px] mx-auto text-center"
-          style={{ marginTop: "96px" }}
+          className="flex flex-wrap items-center justify-center gap-3"
+          style={{ marginTop: "64px" }}
         >
-          <div
-            aria-hidden
-            style={{
-              width: "60px",
-              height: "1px",
-              background: "var(--gold-deep)",
-              margin: "0 auto 24px",
-            }}
-          />
-          <p
-            className="font-serif italic"
-            style={{
-              fontSize: "14px",
-              color: "var(--paper-ghost)",
-              letterSpacing: "0.18em",
-              lineHeight: 1.8,
-            }}
-          >
-            Avalanche Network{" "}
-            <span style={{ color: "var(--gold-deep)" }}>·</span> Circle USDC{" "}
-            <span style={{ color: "var(--gold-deep)" }}>·</span> Real-time
-            Verified Scoring
-          </p>
+          <span className="tag" style={{ fontSize: "10.5px" }}>
+            Avalanche Network
+          </span>
+          <span className="tag" style={{ fontSize: "10.5px" }}>
+            Circle USDC
+          </span>
+          <span className="tag" style={{ fontSize: "10.5px" }}>
+            Real-time Verified Scoring
+          </span>
         </div>
       </div>
 
