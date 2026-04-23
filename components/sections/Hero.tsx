@@ -150,7 +150,7 @@ export default function Hero() {
                   style={{ marginTop: "22px" }}
                 >
                   <Link
-                    href="#waitlist"
+                    href="/treasury"
                     className="inline-flex items-center justify-center font-medium transition-colors"
                     style={{
                       padding: "9px 18px",
@@ -173,7 +173,7 @@ export default function Hero() {
                       el.style.borderColor = g.c;
                     }}
                   >
-                    Enter the Hall
+                    Treasury
                     <span style={{ marginLeft: "8px", fontSize: "13px" }}>→</span>
                   </Link>
                   <Link

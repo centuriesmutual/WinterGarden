@@ -106,7 +106,7 @@ export default function Navbar() {
           </ul>
 
           <Link
-            href="#waitlist"
+            href="/login"
             className="inline-flex items-center justify-center font-medium transition-colors"
             style={{
               padding: "10px 20px",
@@ -131,7 +131,7 @@ export default function Navbar() {
               el.style.borderColor = gray.mid;
             }}
           >
-            Request Access
+            Login
           </Link>
         </div>
       </nav>
