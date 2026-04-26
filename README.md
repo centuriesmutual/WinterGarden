@@ -26,6 +26,14 @@ npm run build
 npm start
 ```
 
+## Vercel
+
+The app must build from the **repository root** where this `package.json` and the `app/` directory live.
+
+In the Vercel project: **Settings → General → Root Directory** should be empty (or `.`). If it was set to `WintergardenApp` or another path from an iOS-only layout, clear it — otherwise `next build` runs in a folder with no `app/` and fails.
+
+Use the **`main`** branch (or whichever branch contains the Next.js tree) for Production Deployments.
+
 ## Design laws
 
 - Zero border-radius anywhere.
